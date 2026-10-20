@@ -149,14 +149,98 @@ input{cursor:text}
 .sr.lf .sn,.sr.lf .gr b,.sr.lf .gr small,.br.fe.lf .sn,.br.fe.lf .gr b,.br.fe.lf .gr small{color:var(--red)}
 .sr.lf .av{background:var(--red);color:#fff}
 #smL{margin-top:12px;width:100%;height:42px;border-radius:10px;border:1px solid var(--red);color:var(--red);background:transparent;font-weight:700}
+
+.srch{width:100%;height:42px;border:1px solid var(--line);border-radius:10px;background:var(--panel);color:var(--text);padding:0 12px;font-size:15px;margin-bottom:6px}
+#tm input:not([type=checkbox]),#tm select{height:40px;border:1px solid var(--line);border-radius:9px;background:var(--panel);color:var(--text);padding:0 8px;font-size:15px;min-width:0}
+.ov .ck{display:flex;align-items:center;gap:8px;margin:6px 0;color:var(--text);font-size:15px}
+.ov .ck input{width:auto;height:auto;margin:0}
+#tmC{display:flex;flex-wrap:wrap;gap:2px 16px}
+#tmCall{display:block;margin-top:8px;padding:9px 12px;text-align:center;border-radius:9px;background:var(--bg);border:1px solid var(--line);color:var(--accent);font-weight:700;text-decoration:none}
+#tmL{margin-top:12px;width:100%;height:42px;border-radius:10px;border:1px solid var(--red);color:var(--red);background:transparent;font-weight:700}
+.dj{margin:14px 2px 4px;font-weight:700;color:var(--accent)}
+
+/* ===== ইসলামিক নকশা ===== */
+:root{--c1:#dcece3;--b1:#b4d8c3;--c2:#d9eaeb;--b2:#a9cfd3;--c3:#f1edd9;--b3:#e7d9a3;--c4:#f2e4e5;--b4:#e8b8c2;--c5:#e5e5f0;--b5:#c5c5e0;--foot:#f6f0dc}
+@media(prefers-color-scheme:dark){:root{--c1:#1d3a33;--b1:#2c5a4c;--c2:#1b3840;--b2:#2a5a63;--c3:#3a3624;--b3:#6b5f2e;--c4:#3d2a2e;--b4:#6e3f4a;--c5:#2a2a3f;--b5:#464670;--foot:#2f2c20}}
+.ar{font-family:'Amiri','Noto Naskh Arabic','Scheherazade New','Traditional Arabic',serif}
+.hd{position:relative;overflow:hidden;background:linear-gradient(180deg,#083f39 0%,#0f766e 62%,#17897f 100%);color:#fff;text-align:center;padding:calc(12px + env(safe-area-inset-top)) 16px 84px}
+.hd .pat,.hd .stars{position:absolute;left:0;top:0;width:100%;height:100%}
+.hd .pat{opacity:.1}
+.hd .bis,.hd .nm,.hd .ad{position:relative;z-index:2}
+.hd .bis{font-size:21px;opacity:.95;line-height:1.5;direction:rtl}
+.hd .nm{font-size:23px;margin-top:2px}
+.hd .ad{opacity:.92}
+.hd .sky{position:absolute;left:0;bottom:-1px;width:100%;height:78px;z-index:1}
+.hd .sky g,.hd .sky g *{fill:var(--bg)}
+.hd.c{padding-bottom:12px;padding-top:calc(10px + env(safe-area-inset-top))}
+.hd.c .sky,.hd.c .stars,.hd.c .bis{display:none}
+.hd.c .nm{font-size:18px;margin-top:0}
+.hd.c .ad{font-size:13px}
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.tl{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;min-height:108px;padding:10px 6px;border-radius:18px;border:1.5px solid;color:var(--text);font-weight:600;font-size:14px;line-height:1.35;text-align:center}
+.tl i{font-style:normal;font-size:36px;line-height:1.1}
+.tl small{display:block;font-weight:400;font-size:11.5px;color:var(--muted)}
+.tl:nth-child(5n+1){background:var(--c1);border-color:var(--b1)}
+.tl:nth-child(5n+2){background:var(--c2);border-color:var(--b2)}
+.tl:nth-child(5n+3){background:var(--c3);border-color:var(--b3)}
+.tl:nth-child(5n+4){background:var(--c4);border-color:var(--b4)}
+.tl:nth-child(5n+5){background:var(--c5);border-color:var(--b5)}
+.foot{margin-top:16px;padding:16px;border-radius:18px;background:var(--foot);text-align:center;color:var(--text);font-weight:600}
+.foot .ar{font-size:34px;line-height:1.5;color:var(--accent)}
+
+/* ===== নতুন ফিচার ===== */
+#acm input,#nz input,#nz textarea{border:1px solid var(--line);border-radius:9px;background:var(--panel);color:var(--text);padding:0 8px;font-size:15px;min-width:0}
+#acm input,#nz input{height:40px}
+#nz textarea{width:100%;display:block;margin-top:4px;padding:8px;font-family:inherit;resize:vertical}
+.at{display:flex;align-items:center;gap:10px;padding:9px 8px;background:var(--panel);border-bottom:1px solid var(--line)}
+.at.lf{background:rgba(192,57,43,.1)}
+.at.lf .gr b,.at.lf .gr small{color:var(--red)}
+.st{flex:none;min-width:108px;padding:8px 10px;border-radius:99px;font-weight:700;font-size:13px;border:1px solid var(--line);background:var(--bg);color:var(--muted)}
+.st.ok{background:#1f8a5b;color:#fff;border-color:#1f8a5b}
+.st.no{background:#c0392b;color:#fff;border-color:#c0392b}
+.st.lv{background:#d9961a;color:#fff;border-color:#d9961a}
+.pc{flex:none;color:var(--accent);font-size:16px}
+.inc{color:#1f8a5b;flex:none}
+.exp{color:var(--red);flex:none}
+.lk{flex:none;text-decoration:none;font-size:22px;padding:4px}
+.btn{width:100%;height:42px;border-radius:10px;background:var(--accent);color:var(--on-accent);font-weight:700;margin-top:6px}
+.dl{flex:none;width:38px;height:38px;border-radius:9px;background:var(--bg);border:1px solid var(--line)}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:12px}
+.stats div{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:10px 4px;text-align:center}
+.stats b{display:block;font-size:20px;color:var(--accent);line-height:1.3}
+.stats small{font-size:11.5px;color:var(--muted)}
+.wb{display:block;width:100%;text-align:left;padding:11px 13px;border-radius:12px;margin-bottom:10px;font-weight:600}
+.wb.w{background:#fdf0d5;color:#7a5200;border:1px solid #f0d79a}
+.wb.n{background:var(--panel);border:1px solid var(--line);color:var(--text)}
+@media(prefers-color-scheme:dark){.wb.w{background:#3a3220;color:#f0d79a;border-color:#6b5f2e}}
+.nb{display:block;color:var(--text);font-size:14px;margin-top:2px;white-space:pre-wrap}
+.cat{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 10px}
+.cat span{padding:5px 10px;border-radius:99px;background:var(--panel);border:1px solid var(--line);font-size:12.5px}
 </style>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="icon-192.png">
 <link rel="apple-touch-icon" href="icon-192.png">
 </head>
 <body>
 <div id="app">
-  <div class="hd"><div class="nm" id="nm" contenteditable="true" aria-label="মাদরাসার নাম"></div><div class="ad" id="ad" contenteditable="true" aria-label="ঠিকানা"></div></div>
+  <div class="hd" id="hd">
+    <svg class="pat" aria-hidden="true"><defs><pattern id="ip" width="44" height="44" patternUnits="userSpaceOnUse"><rect x="11" y="11" width="22" height="22" fill="none" stroke="#fff" stroke-width="1"/><rect x="11" y="11" width="22" height="22" fill="none" stroke="#fff" stroke-width="1" transform="rotate(45 22 22)"/></pattern></defs><rect width="100%" height="100%" fill="url(#ip)"/></svg>
+    <svg class="stars" viewBox="0 0 400 140" preserveAspectRatio="xMidYMin slice" aria-hidden="true"><defs><mask id="cm"><rect width="400" height="140" fill="#fff"/><circle cx="338" cy="19" r="12" fill="#000"/></mask></defs><circle cx="332" cy="23" r="14" fill="#f3d98b" mask="url(#cm)"/><g fill="#f3d98b"><polygon points="344,60 346,66 352,68 346,70 344,76 342,70 336,68 342,66"/><polygon points="64,34 66,41 73,43 66,45 64,52 62,45 55,43 62,41"/><polygon points="96,70 97,74 101,75 97,76 96,80 95,76 91,75 95,74" opacity=".8"/><polygon points="300,78 301,82 305,83 301,84 300,88 299,84 295,83 299,82" opacity=".8"/></g></svg>
+    <div class="bis ar">بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</div>
+    <div class="nm" id="nm" contenteditable="true" aria-label="মাদরাসার নাম"></div>
+    <div class="ad" id="ad" contenteditable="true" aria-label="ঠিকানা"></div>
+    <svg class="sky" viewBox="0 0 400 80" preserveAspectRatio="xMidYMax slice" aria-hidden="true"><g>
+      <rect x="0" y="70" width="400" height="12"/>
+      <rect x="158" y="46" width="84" height="36"/><path d="M164 47Q200 -2 236 47Z"/><rect x="199" y="6" width="2" height="12"/><circle cx="200" cy="5" r="2.4"/>
+      <rect x="126" y="34" width="9" height="48"/><polygon points="126,35 130.5,18 135,35"/><rect x="123" y="44" width="15" height="3"/><circle cx="130.5" cy="16" r="1.8"/>
+      <rect x="265" y="34" width="9" height="48"/><polygon points="265,35 269.5,18 274,35"/><rect x="262" y="44" width="15" height="3"/><circle cx="269.5" cy="16" r="1.8"/>
+      <rect x="62" y="58" width="48" height="24"/><path d="M66 59Q86 36 106 59Z"/><rect x="85" y="34" width="2" height="6"/>
+      <rect x="290" y="58" width="48" height="24"/><path d="M294 59Q314 36 334 59Z"/><rect x="313" y="34" width="2" height="6"/>
+      <rect x="22" y="44" width="8" height="38"/><polygon points="22,45 26,30 30,45"/>
+      <rect x="370" y="44" width="8" height="38"/><polygon points="370,45 374,30 378,45"/>
+    </g></svg>
+  </div>
   <div class="sb hidden" id="sb"><button id="bk" aria-label="পেছনে">←</button><b id="bt"></b></div>
   <div id="main"></div>
 </div>
@@ -173,6 +257,42 @@ input{cursor:text}
   <button type="button" id="smL">✖ ছাত্র চলে গেছে</button>
   <div id="smLb" class="hidden"><label>চলে যাওয়ার তারিখ<input type="date" id="smLD"></label><label>কেন চলে গেছে (নোট)<input id="smLR"></label></div>
   <div class="acts"><button class="del" id="smD">মুছুন</button><button id="smX">বাতিল</button><button class="ok2" id="smS">সংরক্ষণ</button></div>
+</div></div>
+<div id="tm" class="ov hidden"><div class="card"><h3>শিক্ষকের পরিচিতি</h3>
+  <div class="phr"><img id="tmPi" class="av hidden" alt=""><div><button type="button" id="tmPb">📷 ছবি বাছুন</button><button type="button" id="tmPr">ছবি মুছুন</button></div></div>
+  <input type="file" id="tmP" accept="image/*" class="hidden">
+  <label>শিক্ষকের নাম<input id="tmN"></label>
+  <label>পিতার নাম<input id="tmF"></label>
+  <label>পদবী<input id="tmD" list="dsl" placeholder="যেমন: মুহাদ্দিস"></label><datalist id="dsl"></datalist>
+  <label>শিক্ষাগত যোগ্যতা<input id="tmQ" placeholder="যেমন: দাওরায়ে হাদীস, তাকমীল"></label>
+  <label>মোবাইল নং<input id="tmM" inputmode="tel"></label><a id="tmCall" class="hidden" href="#">📞 কল করুন</a>
+  <label>বর্তমান ঠিকানা<input id="tmA"></label>
+  <label>স্থায়ী ঠিকানা<input id="tmPA"></label>
+  <label>জাতীয় পরিচয়পত্র / জন্ম সনদ নং<input id="tmI"></label>
+  <label>জন্ম তারিখ<input type="date" id="tmB"></label>
+  <label>রক্তের গ্রুপ<select id="tmG"><option value="">বাছুন</option><option>A+</option><option>A-</option><option>B+</option><option>B-</option><option>O+</option><option>O-</option><option>AB+</option><option>AB-</option></select></label>
+  <label>যোগদানের তারিখ<input type="date" id="tmJ"></label>
+  <label>নির্ধারিত মাসিক বেতন (টাকা)<input id="tmS" inputmode="numeric"></label>
+  <label>থাকা-খাওয়া<select id="tmR"><option value="">বাছুন</option><option>আবাসিক</option><option>অনাবাসিক</option></select></label>
+  <label>দায়িত্বপ্রাপ্ত জামাত</label><div id="tmC"></div>
+  <label>পড়ানোর কিতাব / বিষয়<input id="tmK" placeholder="যেমন: বুখারী শরীফ, নাহু"></label>
+  <label>নোট<input id="tmT"></label>
+  <button type="button" id="tmL">✖ শিক্ষক চলে গেছেন</button>
+  <div id="tmLb" class="hidden"><label>চলে যাওয়ার তারিখ<input type="date" id="tmLD"></label><label>কেন চলে গেছেন (নোট)<input id="tmLR"></label></div>
+  <div class="acts"><button class="del" id="tmDel">মুছুন</button><button id="tmX">বাতিল</button><button class="ok2" id="tmSv">সংরক্ষণ</button></div>
+</div></div>
+<div id="acm" class="ov hidden"><div class="card"><h3 id="acT">আয় যোগ</h3>
+  <label>তারিখ<input type="date" id="acD"></label>
+  <label>খাত<input id="acC" list="acl"></label><datalist id="acl"></datalist>
+  <label>পরিমাণ (টাকা)<input id="acA" inputmode="numeric"></label>
+  <label>নোট<input id="acN"></label>
+  <div class="acts"><button class="del" id="acDel">মুছুন</button><button id="acX">বাতিল</button><button class="ok2" id="acS">সংরক্ষণ</button></div>
+</div></div>
+<div id="nz" class="ov hidden"><div class="card"><h3>নোটিশ</h3>
+  <label>তারিখ<input type="date" id="nzD"></label>
+  <label>শিরোনাম<input id="nzT"></label>
+  <label>বিস্তারিত<textarea id="nzB" rows="4"></textarea></label>
+  <div class="acts"><button class="del" id="nzDel">মুছুন</button><button id="nzX">বাতিল</button><button class="ok2" id="nzS">সংরক্ষণ</button></div>
 </div></div>
 <div id="rs" class="hidden">
   <div class="tb">
@@ -225,13 +345,13 @@ function num(x){var t=en(x).replace(/[^\d.]/g,'');if(t==='')return null;var v=pa
 function esc(x){return String(x==null?'':x).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
 var D=null;try{D=JSON.parse(localStorage.getItem('mm_v1')||'null');}catch(e){}
 if(!D||!D.students)D={name:'কেন্দ্রীয় দারুল উলূম বাবুস সালাম মাদরাসা',addr:'আশকোনা, দক্ষিণখান, ঢাকা-১২৩০।',jamats:['নূরানী','হিফজ','ইবতেদাইয়্যাহ','মুতাওয়াসসিতাহ','সানাবিয়া','ফযীলত','তাকমীল'],students:[],bills:{},nid:1};
-window.APPD=D;D.ef=D.ef||{};D.efd=D.efd||{};
+window.APPD=D;D.ef=D.ef||{};D.efd=D.efd||{};D.teachers=D.teachers||[];D.tbills=D.tbills||{};D.tn=D.tn||1;
 function sv(){try{localStorage.setItem('mm_v1',JSON.stringify(D));}catch(e){alert('ফোনের জায়গা ভরে গেছে, সেভ হচ্ছে না।');}}
-var NOW=new Date(),cur='home',cj=D.jamats[0]||'',ed=null,cs=null,ph='',ex=1,lf=false,yr=NOW.getFullYear();
+var NOW=new Date(),cur='home',cj=D.jamats[0]||'',ed=null,cs=null,ph='',ex=1,exn=1,lf=false,yr=NOW.getFullYear();
 var MN=['জানুয়ারি','ফেব্রুয়ারি','মার্চ','এপ্রিল','মে','জুন','জুলাই','আগস্ট','সেপ্টেম্বর','অক্টোবর','নভেম্বর','ডিসেম্বর'];
 var XN={1:'১ম সাময়িক',2:'২য় সাময়িক',3:'৩য় সাময়িক'};
-var T={stud:'ছাত্র',list:'জামাত অনুযায়ী ছাত্র তালিকা',bills:'বেতন ও বিদ্যুৎ বিল',bill:'',exam:'পরীক্ষার ফলাফল',jm:'জামাত সম্পাদনা',efee:'পরীক্ষার ফি'};
-var PR={stud:'home',list:'stud',bills:'stud',bill:'bills',exam:'stud',jm:'stud',efee:'stud',rs:'exam'};
+var T={stud:'ছাত্র',list:'জামাত অনুযায়ী ছাত্র তালিকা',bills:'বেতন ও বিদ্যুৎ বিল',bill:'',exam:'পরীক্ষার ফলাফল',jm:'জামাত সম্পাদনা',efee:'পরীক্ষার ফি',tch:'শিক্ষক',tlist:'শিক্ষক তালিকা',tbills:'শিক্ষকের বেতন',tduty:'জামাত অনুযায়ী শিক্ষক',att:'ছাত্র হাজিরা',attr:'ছাত্র হাজিরা রিপোর্ট',tatt:'শিক্ষক হাজিরা',tattr:'শিক্ষক হাজিরা রিপোর্ট',acc:'আয়-ব্যয় খাতা',dues:'বকেয়া তালিকা',notes:'নোটিশ বোর্ড',sab:'সবকের খাতা',bak:'ব্যাকআপ ও রিস্টোর'};
+var PR={stud:'home',list:'stud',bills:'stud',bill:'bills',exam:'stud',jm:'stud',efee:'stud',tch:'home',tlist:'tch',tbills:'tch',tbill:'tbills',tduty:'tch',exj:'exam',att:'stud',attr:'att',tatt:'tch',tattr:'tatt',acc:'home',dues:'stud',notes:'home',sab:'stud',sabd:'sab',bak:'home',rs:'exj'};
 function sorted(c){return D.students.filter(function(s){return s.j===c;}).sort(function(a,b){var x=num(a.no),y=num(b.no);x=x===null?1e9:x;y=y===null?1e9:y;return (x-y)||a.name.localeCompare(b.name);});}
 function stu(id){return D.students.filter(function(s){return s.id===id;})[0];}
 window.APPAPI={classes:function(){return D.jamats.slice();},studentsOf:sorted,paid:function(n,c){return sorted(c).filter(function(s){return actPaid(n,s);});},left:function(c){return sorted(c).filter(function(s){return s.left;});}};
@@ -247,9 +367,11 @@ function chips(){return '<div class="chips">'+D.jamats.map(function(j,i){return 
 function yn(){return '<div class="yn"><button data-a="yp">◀</button><b>'+bn(yr)+'</b><button data-a="yn">▶</button></div>';}
 function emp(){return '<p class="emp">এই জামাতে এখনো কোনো ছাত্র নেই। ছাত্র তালিকা থেকে ছাত্র যোগ করুন।</p>';}
 function avt(s){return s.p?'<img class="av" alt="" src="'+s.p+'">':'<span class="av">'+esc((s.name||'?').charAt(0))+'</span>';}
-function vHome(){return '<button class="mn" data-g="stud">👨‍🎓 ছাত্র<small>জামাত অনুযায়ী তালিকা, বেতন ও বিদ্যুৎ বিল, পরীক্ষার ফলাফল</small></button>';}
-function vStud(){return '<button class="mn" data-g="list">📋 জামাত অনুযায়ী ছাত্র তালিকা<small>ছাত্র যোগ ও তথ্য সম্পাদনা</small></button><button class="mn" data-g="bills">💰 বেতন ও বিদ্যুৎ বিল<small>নির্ধারিত বেতন ও বারো মাসের হিসাব</small></button><button class="mn" data-g="efee">💳 পরীক্ষার ফি<small>ফি জমা হলেই ফলাফল সীটে নাম আসবে</small></button><button class="mn" data-g="exam">📊 পরীক্ষার ফলাফল<small>১ম, ২য় ও ৩য় সাময়িক</small></button><button class="mn" data-g="jm">⚙ জামাত সম্পাদনা<small>জামাত যোগ, নাম বদল, ক্রম ও মোছা</small></button>';}
-function vExam(){return '<button class="mn" data-g="efee">💳 পরীক্ষার ফি<small>ফি জমা হলেই ফলাফল সীটে নাম আসবে</small></button>'+[1,2,3].map(function(n){var c=D.students.filter(function(s){return actPaid(n,s);}).length;return '<button class="mn" data-x="'+n+'">'+XN[n]+' পরীক্ষা<small>ফি জমা: '+bn(c)+' জন, নাম নিজে থেকে আসবে</small></button>';}).join('');}
+function tl(a,ic,lb,sb){return '<button class="tl" '+a+'><i>'+ic+'</i><span>'+lb+'</span>'+(sb?'<small>'+sb+'</small>':'')+'</button>';}
+function vHome(){return vBanners()+vStats()+'<div class="tiles">'+tl('data-g="stud"','👨‍🎓','ছাত্র')+tl('data-g="tch"','🧑‍🏫','শিক্ষক')+tl('data-g="att"','✅','ছাত্র হাজিরা')+tl('data-g="tatt"','🗓️','শিক্ষক হাজিরা')+tl('data-g="exam"','📊','পরীক্ষার ফলাফল')+tl('data-g="efee"','💳','পরীক্ষার ফি')+tl('data-g="bills"','💰','বেতন ও বিদ্যুৎ বিল')+tl('data-g="tbills"','💵','শিক্ষকের বেতন')+tl('data-g="acc"','📒','আয়-ব্যয় খাতা')+tl('data-g="dues"','🔔','বকেয়া তালিকা')+tl('data-g="sab"','📖','সবকের খাতা')+tl('data-g="notes"','📢','নোটিশ বোর্ড')+tl('data-g="jm"','⚙️','জামাত সম্পাদনা')+tl('data-g="tduty"','🏫','জামাত অনুযায়ী শিক্ষক')+tl('data-g="bak"','💾','ব্যাকআপ ও রিস্টোর')+'</div><div class="foot"><div class="ar">ٱلْحَمْدُ لِلَّٰهِ</div><div>আলহামদুলিল্লাহ</div></div>';}
+function vStud(){return '<div class="tiles">'+tl('data-g="list"','📋','জামাত অনুযায়ী ছাত্র তালিকা')+tl('data-g="att"','✅','ছাত্র হাজিরা')+tl('data-g="bills"','💰','বেতন ও বিদ্যুৎ বিল')+tl('data-g="dues"','🔔','বকেয়া তালিকা')+tl('data-g="efee"','💳','পরীক্ষার ফি')+tl('data-g="exam"','📊','পরীক্ষার ফলাফল')+tl('data-g="sab"','📖','সবকের খাতা')+tl('data-g="jm"','⚙️','জামাত সম্পাদনা')+'</div>';}
+function vExam(){return '<div class="tiles">'+tl('data-g="efee"','💳','পরীক্ষার ফি')+[1,2,3].map(function(n){var c=D.students.filter(function(s){return actPaid(n,s);}).length;return tl('data-x="'+n+'"','📝',XN[n]+' পরীক্ষা','ফি জমা: '+bn(c)+' জন');}).join('')+'</div>';}
+function vExj(){return D.jamats.length?'<div class="tiles">'+D.jamats.map(function(j,i){return tl('data-xj="'+i+'"','📖',esc(j),'ফি জমা: '+bn(APPAPI.paid(exn,j).length)+' জন');}).join('')+'</div>':'<p class="emp">আগে জামাত যোগ করুন।</p>';}
 function vJm(){var h='';D.jamats.forEach(function(j,i){var n=D.students.filter(function(s){return s.j===j;}).length;
   h+='<div class="jr"><span class="gr"><b>'+esc(j)+'</b><small>'+bn(n)+' জন ছাত্র</small></span><button data-a="ju" data-i="'+i+'"'+(i?'':' disabled')+'>↑</button><button data-a="jd" data-i="'+i+'"'+(i<D.jamats.length-1?'':' disabled')+'>↓</button><button data-a="jr" data-i="'+i+'">✎</button><button data-a="jx" data-i="'+i+'">🗑</button></div>';});
   return h+'<button class="fab" data-a="aj">＋ নতুন জামাত</button>';}
@@ -284,9 +406,145 @@ function vEfee(){var L=sorted(cj),h='<div class="chips">'+[1,2,3].map(function(n
 function refFee(){var c=0,u=0,t=0;
   Array.prototype.forEach.call(document.querySelectorAll('#main .br.fe'),function(r){var id=+r.getAttribute('data-fr'),s=stu(id),p=paidN(ex,id);r.classList.toggle('on',p&&!s.left);r.querySelector('small').textContent=s.left?'চলে গেছে, সীটে আসবে না':(p?'ফলাফল সীটে নাম আসবে':'ফি জমা নেই, সীটে আসবে না');if(p)t+=num((D.ef[ex]||{})[id])||0;if(!s.left){if(p)c++;else u++;}});
   if($('fs'))$('fs').innerHTML=esc(cj)+' জামাত, '+XN[ex]+'<br>ফি জমা: <b>'+bn(c)+'</b> জন<br>ফি বাকি: <b>'+bn(u)+'</b> জন<br>মোট ফি: <b>'+bn(t)+'</b> টাকা';}
+/* ===== শিক্ষক ===== */
+var tq='',tid=null,tch=null,tlf=false,tph='';
+var DS=['মুহতামিম','নায়েবে মুহতামিম','শাইখুল হাদীস','মুফতি','মুহাদ্দিস','শিক্ষক','সহকারী শিক্ষক','হাফেজ','ক্বারী','অফিস সহকারী'];
+function tget(id){return D.teachers.filter(function(t){return t.id===id;})[0];}
+function tsorted(){return D.teachers.slice().sort(function(a,b){return (a.left?1:0)-(b.left?1:0)||a.id-b.id;});}
+function tavt(t){return t.p?'<img class="av" alt="" src="'+t.p+'">':'<span class="av">'+esc((t.name||'?').charAt(0))+'</span>';}
+function tlfx(t){return t.left?'<small>চলে গেছেন'+(t.ld?' ('+bn(t.ld)+')':'')+(t.lr?'। কারণ: '+esc(t.lr):'')+'</small>':'';}
+function trec(id,m){return (D.tbills[bk(m)]||{})[id]||{};}
+function tDue(t,m){var f=num(t.fee)||0;return f>0&&(yr<NOW.getFullYear()||(yr===NOW.getFullYear()&&m<=NOW.getMonth()))&&(!t.jd||bk(m)>=t.jd.slice(0,7))&&(!t.left||!t.ld||bk(m)<=t.ld.slice(0,7))&&(num(trec(t.id,m).b)||0)<f;}
+function tsum(t){var p=0,d=0,f=num(t.fee)||0;for(var m=0;m<12;m++){var v=num(trec(t.id,m).b)||0;p+=v;if(tDue(t,m))d+=f-v;}return {p:p,d:d};}
+function vTch(){var a=D.teachers.filter(function(t){return !t.left;}).length;
+  return '<div class="tiles">'+tl('data-g="tlist"','📇','শিক্ষক তালিকা ও পরিচিতি',bn(a)+' জন')+tl('data-g="tatt"','🗓️','শিক্ষক হাজিরা')+tl('data-g="tduty"','🏫','জামাত অনুযায়ী দায়িত্ব')+tl('data-g="tbills"','💵','শিক্ষকের বেতন')+'</div>';}
+function tlist(){var q=tq.trim(),L=tsorted().filter(function(t){return !q||(t.name+' '+(t.ds||'')+' '+(t.mo||'')+' '+(t.bk||'')).indexOf(q)>=0;}),h='';
+  if(!L.length)return '<p class="emp">'+(D.teachers.length?'কাউকে পাওয়া যায়নি।':'এখনো কোনো শিক্ষক যোগ করা হয়নি। নিচের বাটনে চাপ দিন।')+'</p>';
+  L.forEach(function(t){h+='<button class="sr'+(t.left?' lf':'')+'" data-te="'+t.id+'">'+tavt(t)+'<span class="gr"><b>'+esc(t.name)+xm(t)+'</b>'+tlfx(t)+(t.ds?'<small>'+esc(t.ds)+'</small>':'')+(t.mo?'<small>মোবাইল: '+esc(t.mo)+'</small>':'')+((t.js||[]).length?'<small>জামাত: '+esc(t.js.join(', '))+'</small>':'')+'</span></button>';});
+  return h;}
+function vTlist(){var a=D.teachers.filter(function(t){return !t.left;}).length,l=D.teachers.length-a;
+  return '<input id="tq" class="srch" placeholder="🔍 নাম, পদবী, মোবাইল বা কিতাব দিয়ে খুঁজুন" value="'+esc(tq)+'"><div class="cnt">মোট '+bn(a)+' জন শিক্ষক'+(l?' (চলে গেছেন '+bn(l)+' জন)':'')+'</div><div id="tl">'+tlist()+'</div><button class="fab" data-a="at">＋ শিক্ষক যোগ</button>';}
+function vTduty(){var h='';
+  D.jamats.forEach(function(j){var L=tsorted().filter(function(t){return !t.left&&(t.js||[]).indexOf(j)>=0;});
+    h+='<div class="dj">'+esc(j)+' ('+bn(L.length)+' জন)</div>';
+    if(!L.length)h+='<p class="emp" style="padding:4px">এই জামাতে কোনো শিক্ষকের দায়িত্ব নেই।</p>';
+    L.forEach(function(t){h+='<button class="sr" data-te="'+t.id+'">'+tavt(t)+'<span class="gr"><b>'+esc(t.name)+'</b>'+(t.ds?'<small>'+esc(t.ds)+'</small>':'')+(t.bk?'<small>কিতাব: '+esc(t.bk)+'</small>':'')+'</span></button>';});});
+  return h||'<p class="emp">আগে জামাত যোগ করুন।</p>';}
+function vTbills(){var L=tsorted(),h=yn(),tp=0,td=0;
+  if(!L.length)return h+'<p class="emp">এখনো কোনো শিক্ষক যোগ করা হয়নি।</p>';
+  L.forEach(function(t){var y=tsum(t);tp+=y.p;td+=y.d;h+='<button class="sr'+(t.left?' lf':'')+'" data-ts="'+t.id+'">'+tavt(t)+'<span class="gr"><b>'+esc(t.name)+xm(t)+'</b>'+tlfx(t)+'<small>নির্ধারিত বেতন: '+(num(t.fee)?bn(num(t.fee))+' টাকা':'দেওয়া হয়নি')+'</small></span><span class="rt">'+(y.d?'<em>বকেয়া '+bn(y.d)+'</em>':'')+'</span></button>';});
+  return h+'<div class="sum">'+bn(yr)+' সালে সব শিক্ষক<br>মোট প্রদত্ত বেতন: <b>'+bn(tp)+'</b> টাকা<br>মোট বকেয়া: <b>'+bn(td)+'</b> টাকা</div>';}
+function vTbill(){var t=tget(tch);if(!t)return '';
+  var h='<div class="sr'+(t.left?' lf':'')+'" style="border-radius:10px;margin-bottom:8px">'+tavt(t)+'<span class="gr"><b>'+esc(t.name)+xm(t)+'</b>'+tlfx(t)+'<small>'+esc(t.ds||'')+(t.jd?' (যোগদান: '+bn(t.jd)+')':'')+'</small></span></div>';
+  h+='<label class="fl">নির্ধারিত মাসিক বেতন (টাকা)<input id="tf" inputmode="numeric" value="'+esc(t.fee||'')+'"></label>'+yn();
+  h+='<div class="bh"><span>মাস</span><span>বেতন প্রদান (✔ = পুরো বেতন)</span><span></span></div>';
+  for(var m=0;m<12;m++){h+='<div class="br" data-mm="'+m+'"><span class="mn2">'+MN[m]+'</span><span class="pf"><input inputmode="numeric" data-tm="'+m+'" value="'+esc(trec(t.id,m).b||'')+'"><button data-a="tpay" data-m="'+m+'">✔</button></span><span></span></div>';}
+  return h+'<div class="sum" id="ts"></div>';}
+function refTbill(){var t=tget(tch);if(!t||!$('ts'))return;
+  Array.prototype.forEach.call(document.querySelectorAll('#main .br[data-mm]'),function(r){r.classList.toggle('due',tDue(t,+r.getAttribute('data-mm')));});
+  var y=tsum(t);$('ts').innerHTML=bn(yr)+' সালের হিসাব<br>প্রদত্ত বেতন: <b>'+bn(y.p)+'</b> টাকা<br>বকেয়া বেতন: <b>'+bn(y.d)+'</b> টাকা';}
+function readPh(inp,cb){var f=inp.files[0];if(!f)return;var r=new FileReader();r.onload=function(){var im=new Image();im.onload=function(){var k=Math.min(1,360/Math.max(im.width,im.height)),c=document.createElement('canvas');c.width=Math.round(im.width*k);c.height=Math.round(im.height*k);c.getContext('2d').drawImage(im,0,0,c.width,c.height);cb(c.toDataURL('image/jpeg',0.8));};im.src=r.result;};r.readAsDataURL(f);inp.value='';}
+function tShowPh(){$('tmPi').classList.toggle('hidden',!tph);if(tph)$('tmPi').src=tph;}
+function tShowLf(){$('tmLb').classList.toggle('hidden',!tlf);$('tmL').textContent=tlf?'↩ চলে যাওয়া বাতিল (ফিরে এসেছেন)':'✖ শিক্ষক চলে গেছেন';}
+function tShowCall(){var m=en($('tmM').value).replace(/[^\d+]/g,''),a=$('tmCall');a.classList.toggle('hidden',!m);a.href='tel:'+m;}
+function openTm(id){tid=id;var t=id?tget(id):{};
+  $('tmN').value=t.name||'';$('tmF').value=t.fa||'';$('tmD').value=t.ds||'';$('tmQ').value=t.q||'';$('tmM').value=t.mo||'';$('tmA').value=t.ad||'';$('tmPA').value=t.pa||'';$('tmI').value=t.ic||'';$('tmB').value=t.dob||'';$('tmG').value=t.bg||'';$('tmJ').value=t.jd||'';$('tmS').value=t.fee||'';$('tmR').value=t.rs||'';$('tmK').value=t.bk||'';$('tmT').value=t.nt||'';
+  $('tmC').innerHTML=D.jamats.map(function(j,i){return '<label class="ck"><input type="checkbox" value="'+i+'"'+((t.js||[]).indexOf(j)>=0?' checked':'')+'>'+esc(j)+'</label>';}).join('')||'<small>আগে জামাত যোগ করুন</small>';
+  tph=t.p||'';tShowPh();tlf=!!t.left;$('tmLD').value=t.ld||today();$('tmLR').value=t.lr||'';tShowLf();tShowCall();
+  $('tmDel').classList.toggle('hidden',!id);$('tm').classList.remove('hidden');}
+$('dsl').innerHTML=DS.map(function(x){return '<option value="'+esc(x)+'">';}).join('');
+$('tmPb').onclick=function(){$('tmP').click();};
+$('tmPr').onclick=function(){tph='';tShowPh();};
+$('tmP').onchange=function(){readPh(this,function(u){tph=u;tShowPh();});};
+$('tmM').addEventListener('input',tShowCall);
+$('tmL').onclick=function(){tlf=!tlf;tShowLf();};
+$('tmX').onclick=function(){$('tm').classList.add('hidden');};
+$('tmSv').onclick=function(){var n=$('tmN').value.trim();if(!n){alert('শিক্ষকের নাম লিখুন।');return;}
+  var t=tid?tget(tid):{id:D.tn++};
+  t.name=n;t.fa=$('tmF').value.trim();t.ds=$('tmD').value.trim();t.q=$('tmQ').value.trim();t.mo=bn(en($('tmM').value).trim());t.ad=$('tmA').value.trim();t.pa=$('tmPA').value.trim();t.ic=$('tmI').value.trim();t.dob=$('tmB').value;t.bg=$('tmG').value;t.jd=$('tmJ').value;t.fee=bn(en($('tmS').value).trim());t.rs=$('tmR').value;t.bk=$('tmK').value.trim();t.nt=$('tmT').value.trim();
+  t.js=Array.prototype.map.call($('tmC').querySelectorAll('input:checked'),function(x){return D.jamats[+x.value];});
+  t.p=tph;t.left=tlf;t.ld=tlf?$('tmLD').value:'';t.lr=tlf?$('tmLR').value.trim():'';
+  if(!tid)D.teachers.push(t);sv();$('tm').classList.add('hidden');render(cur);};
+$('tmDel').onclick=function(){if(!confirm('এই শিক্ষকের সব তথ্য মুছবেন?'))return;D.teachers=D.teachers.filter(function(t){return t.id!==tid;});sv();$('tm').classList.add('hidden');render(cur);};
+function ttl(s){return s==='sabd'?(stu(sd)||{}).name||'':s==='bill'?(stu(cs)||{}).name||'':s==='tbill'?(tget(tch)||{}).name||'':s==='exj'?XN[exn]+' ফলাফল, জামাত বেছে নিন':T[s]||'';}
+/* ===== নতুন ফিচার ===== */
+D.att=D.att||{};D.tatt=D.tatt||{};D.acc=D.acc||[];D.notes=D.notes||[];D.sab=D.sab||{};D.an=D.an||1;
+var ad=today(),am=today().slice(0,7),sd=null,aid=null,at2='i',nzid=null;
+var ST={p:['✔ উপস্থিত','ok'],a:['✖ অনুপস্থিত','no'],l:['ছুটি','lv'],'':['নেওয়া হয়নি','']};
+var IC=['যাকাত','সদকা','ফিতরা','চাঁদা','ছাত্রের ফি','অন্যান্য আয়'],EC=['বাজার ও খাবার','শিক্ষকের বেতন','বিদ্যুৎ বিল','মেরামত','কিতাব ও সামগ্রী','অন্যান্য খরচ'];
+function AT(k){return k==='s'?D.att:D.tatt;}
+function ppl(k){return k==='s'?sorted(cj).filter(function(s){return !s.left;}):tsorted().filter(function(t){return !t.left;});}
+function vAtt(k){var L=ppl(k),M=AT(k)[ad]||{},h=(k==='s'?chips():'')+'<label class="fl">তারিখ<input type="date" id="adt" value="'+ad+'"></label>';
+  if(!L.length)return h+(k==='s'?emp():'<p class="emp">এখনো কোনো শিক্ষক যোগ করা হয়নি।</p>');
+  h+='<div class="tools"><button data-a="allp">✔ সবাই উপস্থিত</button><button data-a="clr">↺ মুছুন</button><button data-g="'+(k==='s'?'attr':'tattr')+'">📊 মাসিক রিপোর্ট</button></div><div class="sum" id="as"></div>';
+  L.forEach(function(x){var c=M[x.id]||'';h+='<div class="at">'+(k==='s'?'<span class="sn">'+esc(x.no)+'</span>'+avt(x):tavt(x))+'<span class="gr"><b>'+esc(x.name)+'</b></span><button class="st '+ST[c][1]+'" data-ak="'+x.id+'">'+ST[c][0]+'</button></div>';});
+  return h;}
+function refAtt(){var k=cur==='att'?'s':'t',M=AT(k)[ad]||{},c={p:0,a:0,l:0};ppl(k).forEach(function(x){if(M[x.id])c[M[x.id]]++;});
+  if($('as'))$('as').innerHTML='উপস্থিত: <b>'+bn(c.p)+'</b> অনুপস্থিত: <b>'+bn(c.a)+'</b> ছুটি: <b>'+bn(c.l)+'</b>';}
+function vAttR(k){var L=k==='s'?sorted(cj):tsorted(),A=AT(k),h=(k==='s'?chips():'')+'<label class="fl">মাস<input type="month" id="am" value="'+am+'"></label>';
+  if(!L.length)return h+'<p class="emp">কেউ নেই।</p>';
+  L.forEach(function(x){var p=0,a=0,l=0;Object.keys(A).forEach(function(dt){if(dt.slice(0,7)===am){var v=A[dt][x.id];if(v==='p')p++;else if(v==='a')a++;else if(v==='l')l++;}});var t=p+a+l;
+    h+='<div class="at'+(x.left?' lf':'')+'">'+(k==='s'?'<span class="sn">'+esc(x.no)+'</span>'+avt(x):tavt(x))+'<span class="gr"><b>'+esc(x.name)+xm(x)+'</b><small>উপস্থিত '+bn(p)+', অনুপস্থিত '+bn(a)+', ছুটি '+bn(l)+'</small></span><b class="pc">'+(t?bn(Math.round(p*100/t))+'%':'-')+'</b></div>';});
+  return h;}
+function accM(m){return D.acc.filter(function(e){return e.d.slice(0,7)===m;}).sort(function(a,b){return b.d.localeCompare(a.d)||b.id-a.id;});}
+function accT(m){var i=0,e=0;accM(m).forEach(function(x){if(x.t==='i')i+=x.a;else e+=x.a;});return {i:i,e:e};}
+function vAcc(){var L=accM(am),t=accT(am),cat={},h='<label class="fl">মাস<input type="month" id="am" value="'+am+'"></label><div class="sum">মোট আয়: <b class="inc">'+bn(t.i)+'</b> টাকা<br>মোট খরচ: <b class="exp">'+bn(t.e)+'</b> টাকা<br>জের: <b>'+bn(t.i-t.e)+'</b> টাকা</div><div class="tools"><button data-a="ai">＋ আয় যোগ</button><button data-a="ae">＋ খরচ যোগ</button></div>';
+  L.forEach(function(x){var k=(x.t==='i'?'আয়: ':'খরচ: ')+x.c;cat[k]=(cat[k]||0)+x.a;});
+  if(L.length)h+='<div class="cat">'+Object.keys(cat).map(function(k){return '<span>'+esc(k)+' '+bn(cat[k])+'</span>';}).join('')+'</div>';
+  else h+='<p class="emp">এই মাসে কোনো হিসাব নেই।</p>';
+  L.forEach(function(x){h+='<button class="sr" data-ac="'+x.id+'"><span class="gr"><b>'+esc(x.c)+'</b><small>'+bn(x.d)+(x.n?'। '+esc(x.n):'')+'</small></span><b class="'+(x.t==='i'?'inc':'exp')+'">'+(x.t==='i'?'+':'-')+bn(x.a)+'</b></button>';});
+  return h;}
+function openAc(id,type){aid=id;var e=id?D.acc.filter(function(x){return x.id===id;})[0]:null;at2=e?e.t:type;
+  $('acT').textContent=(at2==='i'?'আয়':'খরচ')+(e?' সম্পাদনা':' যোগ');$('acl').innerHTML=(at2==='i'?IC:EC).map(function(x){return '<option value="'+esc(x)+'">';}).join('');
+  $('acD').value=e?e.d:today();$('acC').value=e?e.c:'';$('acA').value=e?bn(e.a):'';$('acN').value=e?e.n||'':'';$('acDel').classList.toggle('hidden',!e);$('acm').classList.remove('hidden');}
+$('acX').onclick=function(){$('acm').classList.add('hidden');};
+$('acS').onclick=function(){var a=num($('acA').value);if(!a){alert('পরিমাণ লিখুন।');return;}
+  var o={t:at2,d:$('acD').value||today(),c:$('acC').value.trim()||(at2==='i'?'অন্যান্য আয়':'অন্যান্য খরচ'),a:a,n:$('acN').value.trim()};
+  if(aid){var e=D.acc.filter(function(x){return x.id===aid;})[0];e.d=o.d;e.c=o.c;e.a=o.a;e.n=o.n;}else{o.id=D.an++;D.acc.push(o);}
+  am=o.d.slice(0,7);sv();$('acm').classList.add('hidden');render(cur);};
+$('acDel').onclick=function(){if(!confirm('এই হিসাবটা মুছবেন?'))return;D.acc=D.acc.filter(function(x){return x.id!==aid;});sv();$('acm').classList.add('hidden');render(cur);};
+function smsL(s,dv){var n=en(s.mo||'').replace(/[^\d]/g,'');if(!n)return '';
+  var msg='আসসালামু আলাইকুম। '+D.name+': আপনার সন্তান '+s.name+' ('+s.j+') এর '+bn(yr)+' সালের বকেয়া বেতন '+bn(dv)+' টাকা। অনুগ্রহ করে পরিশোধ করুন।',w=n.charAt(0)==='0'?'88'+n:n;
+  return '<a class="lk" href="sms:'+n+'?body='+encodeURIComponent(msg)+'">📩</a><a class="lk" href="https://wa.me/'+w+'?text='+encodeURIComponent(msg)+'">💬</a>';}
+function vDues(){var rows='',tot=0,c=0;
+  D.jamats.forEach(function(j){sorted(j).forEach(function(s){var y=ysum(s);if(y.d>0){tot+=y.d;c++;rows+='<div class="at'+(s.left?' lf':'')+'">'+avt(s)+'<span class="gr"><b>'+esc(s.name)+xm(s)+'</b><small>'+esc(j)+', দাখেলা নং '+esc(s.no)+'</small></span><b class="exp">'+bn(y.d)+'</b>'+smsL(s,y.d)+'</div>';}});});
+  return yn()+'<div class="sum">'+bn(yr)+' সালে বকেয়াদার: <b>'+bn(c)+'</b> জন<br>মোট বকেয়া: <b>'+bn(tot)+'</b> টাকা</div>'+(rows||'<p class="emp">কোনো বকেয়া নেই।</p>');}
+function vNotes(){var L=D.notes.slice().sort(function(a,b){return b.d.localeCompare(a.d)||b.id-a.id;});
+  return (L.length?L.map(function(n){return '<button class="sr" data-nt="'+n.id+'"><span class="gr"><b>'+esc(n.t)+'</b><small>'+bn(n.d)+'</small>'+(n.b?'<span class="nb">'+esc(n.b)+'</span>':'')+'</span></button>';}).join(''):'<p class="emp">এখনো কোনো নোটিশ নেই।</p>')+'<button class="fab" data-a="an">＋ নোটিশ</button>';}
+function openNz(id){nzid=id;var n=id?D.notes.filter(function(x){return x.id===id;})[0]:null;$('nzD').value=n?n.d:today();$('nzT').value=n?n.t:'';$('nzB').value=n?n.b||'':'';$('nzDel').classList.toggle('hidden',!n);$('nz').classList.remove('hidden');}
+$('nzX').onclick=function(){$('nz').classList.add('hidden');};
+$('nzS').onclick=function(){var t=$('nzT').value.trim();if(!t){alert('নোটিশের শিরোনাম লিখুন।');return;}
+  if(nzid){var n=D.notes.filter(function(x){return x.id===nzid;})[0];n.d=$('nzD').value||today();n.t=t;n.b=$('nzB').value.trim();}else D.notes.push({id:D.an++,d:$('nzD').value||today(),t:t,b:$('nzB').value.trim()});
+  sv();$('nz').classList.add('hidden');render(cur);};
+$('nzDel').onclick=function(){if(!confirm('এই নোটিশ মুছবেন?'))return;D.notes=D.notes.filter(function(x){return x.id!==nzid;});sv();$('nz').classList.add('hidden');render(cur);};
+function sabL(id){return (D.sab[id]||[]).slice().sort(function(a,b){return b.d.localeCompare(a.d)||b.id-a.id;});}
+function vSab(){var L=sorted(cj),h=chips();if(!L.length)return h+emp();
+  L.forEach(function(s){var e=sabL(s.id)[0];h+='<button class="sr'+(s.left?' lf':'')+'" data-sb="'+s.id+'"><span class="sn">'+esc(s.no)+'</span>'+avt(s)+'<span class="gr"><b>'+esc(s.name)+xm(s)+'</b><small>'+(e?'সর্বশেষ: '+bn(e.d)+(e.a?', সবক: '+esc(e.a):''):'এখনো কিছু লেখা হয়নি')+'</small></span></button>';});
+  return h;}
+function vSabd(){var s=stu(sd);if(!s)return '';
+  var h='<div class="sr'+(s.left?' lf':'')+'" style="border-radius:10px;margin-bottom:8px">'+avt(s)+'<span class="gr"><b>'+esc(s.name)+xm(s)+'</b><small>'+esc(s.j)+', দাখেলা নং '+esc(s.no)+'</small></span></div>';
+  h+='<div class="sum"><label class="fl">তারিখ<input type="date" id="sbD" value="'+today()+'"></label><label class="fl">সবক<input id="sbA" placeholder="যেমন: পারা ৩, পৃষ্ঠা ৫"></label><label class="fl">সাবকি<input id="sbB"></label><label class="fl">মানজিল<input id="sbC"></label><button class="btn" data-a="sadd">যোগ করুন</button></div>';
+  var E=sabL(sd);if(!E.length)h+='<p class="emp">এখনো কিছু লেখা হয়নি।</p>';
+  E.forEach(function(e){h+='<div class="at"><span class="gr"><b>'+bn(e.d)+'</b><small>সবক: '+esc(e.a||'-')+', সাবকি: '+esc(e.b||'-')+', মানজিল: '+esc(e.c||'-')+'</small></span><button class="dl" data-a="sdel" data-i="'+e.id+'">🗑</button></div>';});
+  return h;}
+function bakTxt(){D.lastBak=today();sv();var o={app:'madrasa-mgmt',v:1,date:today(),mm:D,rs:{}};['rs_e1','rs_e2','rs_e3'].forEach(function(k){var v=localStorage.getItem(k);if(v)o.rs[k]=v;});return JSON.stringify(o);}
+function restore(t){var o;try{o=JSON.parse(t);}catch(e){}
+  if(!o||!o.mm||!o.mm.students){alert('এটা সঠিক ব্যাকআপ নয়।');return;}
+  if(!confirm('বর্তমান সব ডাটা মুছে ব্যাকআপের ডাটা বসবে ('+bn(o.mm.students.length)+' জন ছাত্র)। নিশ্চিত?'))return;
+  try{['rs_e1','rs_e2','rs_e3'].forEach(function(k){localStorage.removeItem(k);});localStorage.setItem('mm_v1',JSON.stringify(o.mm));Object.keys(o.rs||{}).forEach(function(k){localStorage.setItem(k,o.rs[k]);});}catch(e){alert('ফিরিয়ে আনা যায়নি।');return;}
+  location.reload();}
+function vBak(){return '<div class="sum">শেষ ব্যাকআপ: <b>'+(D.lastBak?bn(D.lastBak):'এখনো নেওয়া হয়নি')+'</b><br>ছাত্র: '+bn(D.students.length)+' জন, শিক্ষক: '+bn(D.teachers.length)+' জন</div><div class="tiles">'+tl('data-a="bdl"','⬇️','ব্যাকআপ ফাইল ডাউনলোড')+tl('data-a="bcp"','📋','ব্যাকআপ কপি করুন')+tl('data-a="bfl"','⬆️','ফাইল থেকে ফিরিয়ে আনুন')+tl('data-a="bps"','📥','পেস্ট করে ফিরিয়ে আনুন')+'</div><p class="emp">ছাত্র, শিক্ষক, হিসাব ও ফলাফল সীট সব ফোনের ব্রাউজারে থাকে। ফোন বদলালে বা ব্রাউজারের ডাটা মুছলে হারিয়ে যাবে, তাই নিয়মিত ব্যাকআপ নিয়ে রাখুন।</p><input type="file" id="bfi" accept=".json,application/json" class="hidden">';}
+function vBanners(){var h='',n=D.notes.slice().sort(function(a,b){return b.d.localeCompare(a.d)||b.id-a.id;})[0],has=D.students.length+D.teachers.length>0;
+  if(has){var days=D.lastBak?Math.floor((new Date(today())-new Date(D.lastBak))/864e5):-1;
+    if(days<0)h+='<button class="wb w" data-g="bak">⚠️ এখনো ব্যাকআপ নেওয়া হয়নি। এখনই ব্যাকআপ নিন</button>';
+    else if(days>=7)h+='<button class="wb w" data-g="bak">⚠️ শেষ ব্যাকআপ '+bn(days)+' দিন আগে। নতুন ব্যাকআপ নিন</button>';}
+  if(n)h+='<button class="wb n" data-g="notes">📢 '+esc(n.t)+'</button>';return h;}
+function vStats(){var a=D.students.filter(function(s){return !s.left;}).length,t=D.teachers.filter(function(x){return !x.left;}).length,M=D.att[today()]||{},p=0,c=accT(today().slice(0,7));
+  Object.keys(M).forEach(function(k){if(M[k]==='p')p++;});
+  return '<div class="stats"><div><b>'+bn(a)+'</b><small>ছাত্র</small></div><div><b>'+bn(t)+'</b><small>শিক্ষক</small></div><div><b>'+bn(p)+'</b><small>আজ উপস্থিত</small></div><div><b>'+bn(c.i-c.e)+'</b><small>এ মাসের জের</small></div></div>';}
 function render(s){cur=s;$('rs').classList.toggle('hidden',s!=='rs');if(s==='rs')return;
-  $('sb').classList.toggle('hidden',s==='home');$('bt').textContent=s==='bill'?(stu(cs)||{}).name||'':T[s]||'';
-  $('main').innerHTML={home:vHome,stud:vStud,list:vList,bills:vBills,bill:vBill,exam:vExam,jm:vJm,efee:vEfee}[s]();if(s==='bill')refBill();if(s==='efee')refFee();}
+  $('sb').classList.toggle('hidden',s==='home');$('hd').classList.toggle('c',s!=='home');$('bt').textContent=ttl(s);
+  $('main').innerHTML={home:vHome,stud:vStud,list:vList,bills:vBills,bill:vBill,exam:vExam,jm:vJm,efee:vEfee,exj:vExj,tch:vTch,tlist:vTlist,tduty:vTduty,tbills:vTbills,tbill:vTbill,att:function(){return vAtt('s');},attr:function(){return vAttR('s');},tatt:function(){return vAtt('t');},tattr:function(){return vAttR('t');},acc:vAcc,dues:vDues,notes:vNotes,sab:vSab,sabd:vSabd,bak:vBak}[s]();if(s==='bill')refBill();if(s==='efee')refFee();if(s==='tbill')refTbill();if(s==='att'||s==='tatt')refAtt();}
 function nav(s){try{history.pushState({s:s},'');}catch(e){}render(s);}
 window.mmBack=function(){try{if(history.state&&history.state.s===cur){history.back();return;}}catch(e){}render(PR[cur]||'home');};
 window.addEventListener('popstate',function(e){render((e.state&&e.state.s)||'home');});
@@ -314,29 +572,55 @@ $('smS').onclick=function(){var n=$('smN').value.trim(),k=bn(en($('smK').value).
   if(!ed)D.students.push(s);
   cj=j;sv();$('sm').classList.add('hidden');render(cur);};
 $('smD').onclick=function(){if(!confirm('এই ছাত্রকে মুছবেন?'))return;D.students=D.students.filter(function(s){return s.id!==ed;});sv();$('sm').classList.add('hidden');render(cur);};
-$('main').addEventListener('click',function(ev){var t=ev.target.closest('[data-j],[data-a],[data-e],[data-g],[data-x],[data-s],[data-xe]');if(!t)return;
+$('main').addEventListener('click',function(ev){var t=ev.target.closest('[data-j],[data-a],[data-e],[data-g],[data-x],[data-s],[data-xe],[data-xj],[data-te],[data-ts],[data-ak],[data-ac],[data-nt],[data-sb]');if(!t)return;
   if(t.hasAttribute('data-j')){cj=D.jamats[+t.getAttribute('data-j')];render(cur);}
   else if(t.hasAttribute('data-g'))nav(t.getAttribute('data-g'));
   else if(t.hasAttribute('data-e'))openSm(+t.getAttribute('data-e'));
+  else if(t.hasAttribute('data-ak')){var kk=cur==='att'?'s':'t',MM=AT(kk)[ad]=AT(kk)[ad]||{},idk=t.getAttribute('data-ak'),nx={'':'p','p':'a','a':'l','l':''}[MM[idk]||''];if(nx)MM[idk]=nx;else delete MM[idk];sv();render(cur);}
+  else if(t.hasAttribute('data-ac'))openAc(+t.getAttribute('data-ac'));
+  else if(t.hasAttribute('data-nt'))openNz(+t.getAttribute('data-nt'));
+  else if(t.hasAttribute('data-sb')){sd=+t.getAttribute('data-sb');nav('sabd');}
   else if(t.hasAttribute('data-xe')){ex=+t.getAttribute('data-xe');render(cur);}
   else if(t.hasAttribute('data-s')){cs=+t.getAttribute('data-s');nav('bill');}
-  else if(t.hasAttribute('data-x')){var n=+t.getAttribute('data-x');nav('rs');window.__rs.open('rs_e'+n,XN[n]+' পরীক্ষার ফলাফল',n);if(!D.students.some(function(s){return actPaid(n,s);}))alert('এই পরীক্ষার ফি জমা দেওয়া কোনো ছাত্র নেই। আগে "পরীক্ষার ফি" থেকে ফি যোগ করুন, তাহলে নাম নিজে থেকে আসবে।');}
+  else if(t.hasAttribute('data-x')){exn=+t.getAttribute('data-x');nav('exj');}
+  else if(t.hasAttribute('data-xj')){var jn=D.jamats[+t.getAttribute('data-xj')];if(!APPAPI.paid(exn,jn).length){alert('"'+jn+'" জামাতে এই পরীক্ষার ফি জমা দেওয়া কোনো ছাত্র নেই। আগে "পরীক্ষার ফি" থেকে ফি যোগ করুন।');return;}nav('rs');window.__rs.open('rs_e'+exn,XN[exn]+' পরীক্ষার ফলাফল',exn,jn);}
+  else if(t.hasAttribute('data-te'))openTm(+t.getAttribute('data-te'));
+  else if(t.hasAttribute('data-ts')){tch=+t.getAttribute('data-ts');nav('tbill');}
   else{var a=t.getAttribute('data-a'),i=+t.getAttribute('data-i'),J=D.jamats;
     if(a==='as')openSm(null);
+    else if(a==='at')openTm(null);
+    else if(a==='allp'||a==='clr'){var k2=cur==='att'?'s':'t',M2=AT(k2)[ad]=AT(k2)[ad]||{};ppl(k2).forEach(function(x){if(a==='allp')M2[x.id]='p';else delete M2[x.id];});sv();render(cur);}
+    else if(a==='ai')openAc(null,'i');
+    else if(a==='ae')openAc(null,'e');
+    else if(a==='an')openNz(null);
+    else if(a==='sadd'){var sa=$('sbA').value.trim(),sb=$('sbB').value.trim(),sc=$('sbC').value.trim();if(!sa&&!sb&&!sc){alert('সবক, সাবকি বা মানজিল অন্তত একটা লিখুন।');return;}(D.sab[sd]=D.sab[sd]||[]).push({id:D.an++,d:$('sbD').value||today(),a:sa,b:sb,c:sc});sv();render('sabd');}
+    else if(a==='sdel'){if(confirm('এই লেখাটা মুছবেন?')){var si=+t.getAttribute('data-i');D.sab[sd]=(D.sab[sd]||[]).filter(function(e){return e.id!==si;});sv();render('sabd');}}
+    else if(a==='bdl'){var txt=bakTxt(),bl=new Blob([txt],{type:'application/json'}),u=URL.createObjectURL(bl),an2=document.createElement('a');an2.href=u;an2.download='madrasa-backup-'+today()+'.json';document.body.appendChild(an2);an2.click();setTimeout(function(){URL.revokeObjectURL(u);an2.remove();},1500);render('bak');}
+    else if(a==='bcp'){var tx2=bakTxt();render('bak');if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(tx2).then(function(){alert('ব্যাকআপ কপি হয়েছে। কোথাও পেস্ট করে সংরক্ষণ করুন।');},function(){prompt('এই লেখাটা কপি করুন',tx2);});}else prompt('এই লেখাটা কপি করুন',tx2);}
+    else if(a==='bfl')$('bfi').click();
+    else if(a==='bps'){var pt=prompt('কপি করা ব্যাকআপ এখানে পেস্ট করুন');if(pt)restore(pt);}
+    else if(a==='tpay'){var tt=tget(tch),f3=num(tt.fee);if(!f3){alert('আগে নির্ধারিত মাসিক বেতন লিখুন।');return;}var mm=+t.getAttribute('data-m'),TB=D.tbills[bk(mm)]=D.tbills[bk(mm)]||{};(TB[tch]=TB[tch]||{}).b=bn(f3);sv();render('tbill');}
     else if(a==='fpay'){var id=+t.getAttribute('data-i'),E=D.ef[ex]=D.ef[ex]||{};if(paidN(ex,id))delete E[id];else{var f2=num(D.efd[ex]);if(!f2){alert('আগে এই পরীক্ষার নির্ধারিত ফি লিখুন।');return;}E[id]=bn(f2);}sv();render('efee');}
     else if(a==='yp'){yr--;render(cur);}
     else if(a==='yn'){yr++;render(cur);}
     else if(a==='pay'){var s=stu(cs),f=num(s.fee);if(!f){alert('আগে নির্ধারিত মাসিক বেতন লিখুন।');return;}setRec(cs,+t.getAttribute('data-m'),'b',bn(f));sv();render('bill');}
     else if(a==='aj'){var n=(prompt('নতুন জামাতের নাম')||'').trim();if(n&&J.indexOf(n)<0){J.push(n);cj=n;sv();render(cur);}}
     else if(a==='ju'||a==='jd'){var k=a==='ju'?i-1:i+1;if(k>=0&&k<J.length){var x=J[i];J[i]=J[k];J[k]=x;sv();render(cur);}}
-    else if(a==='jr'){var o=J[i],m=(prompt('জামাতের নতুন নাম',o)||'').trim();if(m&&m!==o&&J.indexOf(m)<0){D.students.forEach(function(s){if(s.j===o)s.j=m;});J[i]=m;if(cj===o)cj=m;sv();render(cur);}}
-    else if(a==='jx'){var o2=J[i],c=D.students.filter(function(s){return s.j===o2;}).length;if(confirm('"'+o2+'" জামাত মুছবেন?'+(c?'\nএই জামাতের '+bn(c)+' জন ছাত্রও মুছে যাবে।':''))){D.students=D.students.filter(function(s){return s.j!==o2;});J.splice(i,1);if(cj===o2)cj=J[0]||'';sv();render(cur);}}}
+    else if(a==='jr'){var o=J[i],m=(prompt('জামাতের নতুন নাম',o)||'').trim();if(m&&m!==o&&J.indexOf(m)<0){D.students.forEach(function(s){if(s.j===o)s.j=m;});D.teachers.forEach(function(t){t.js=(t.js||[]).map(function(x){return x===o?m:x;});});J[i]=m;if(cj===o)cj=m;sv();render(cur);}}
+    else if(a==='jx'){var o2=J[i],c=D.students.filter(function(s){return s.j===o2;}).length;if(confirm('"'+o2+'" জামাত মুছবেন?'+(c?'\nএই জামাতের '+bn(c)+' জন ছাত্রও মুছে যাবে।':''))){D.students=D.students.filter(function(s){return s.j!==o2;});D.teachers.forEach(function(t){t.js=(t.js||[]).filter(function(x){return x!==o2;});});J.splice(i,1);if(cj===o2)cj=J[0]||'';sv();render(cur);}}}
 });
 $('main').addEventListener('input',function(ev){var t=ev.target;
-  if(t.id==='ef'){D.efd[ex]=bn(en(t.value).trim());sv();}
+  if(t.id==='tq'){tq=t.value;$('tl').innerHTML=tlist();}
+  else if(t.id==='tf'){tget(tch).fee=bn(en(t.value).trim());sv();refTbill();}
+  else if(t.hasAttribute('data-tm')){var tm2=+t.getAttribute('data-tm'),TB2=D.tbills[bk(tm2)]=D.tbills[bk(tm2)]||{};(TB2[tch]=TB2[tch]||{}).b=t.value;sv();refTbill();}
+  else if(t.id==='ef'){D.efd[ex]=bn(en(t.value).trim());sv();}
   else if(t.hasAttribute('data-fe')){(D.ef[ex]=D.ef[ex]||{})[t.getAttribute('data-fe')]=t.value;sv();refFee();}
   else if(t.id==='bf'){stu(cs).fee=bn(en(t.value).trim());sv();refBill();}
   else if(t.hasAttribute('data-m')){setRec(cs,+t.getAttribute('data-m'),t.getAttribute('data-k'),t.value);sv();refBill();}});
+$('main').addEventListener('change',function(ev){var t=ev.target;
+  if(t.id==='adt'&&t.value){ad=t.value;render(cur);}
+  else if(t.id==='am'&&t.value){am=t.value;render(cur);}
+  else if(t.id==='bfi'&&t.files[0]){var r=new FileReader();r.onload=function(){restore(r.result);};r.readAsText(t.files[0]);t.value='';}});
 render('home');
 })();
 </script>
@@ -573,7 +857,7 @@ render('home');
     pg.classList.remove('cap');idx=cur;draw();setZ(z);area.scrollTop=st;area.scrollLeft=sl;btn.textContent=old;
   }
   Array.prototype.forEach.call(menu.querySelectorAll('button'),function(b){b.onclick=function(){dl(b.getAttribute('data-f'));};});
-  window.__rs={draw:draw,pages:function(){return pages;},open:function(k,t,n){KEY=k;window.RS_EXAM=t;curEx=n||0;loadState();idx=0;syncRS(curEx);draw();setTimeout(fitW,30);}};
+  window.__rs={draw:draw,pages:function(){return pages;},open:function(k,t,n,j){KEY=k;window.RS_EXAM=t;curEx=n||0;loadState();idx=0;syncRS(curEx);if(j){for(var i=0;i<pages.length;i++){if(pages[i].cls===j){idx=i;break;}}}draw();setTimeout(fitW,30);}};
 })();
 </script>
 <script>if('serviceWorker' in navigator&&location.protocol.indexOf('http')===0){navigator.serviceWorker.register('sw.js').catch(function(){});}</script>
