@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0f766e">
+<title>মাদরাসা ম্যানেজমেন্ট</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Noto+Sans+Bengali:wght@400;500;700&display=swap">
+<style>
+:root{--bg:#f3f5f4;--panel:#ffffff;--text:#16211e;--muted:#667570;--line:#dfe5e2;--accent:#0f766e;--on-accent:#ffffff}
+@media(prefers-color-scheme:dark){:root{--bg:#0e1513;--panel:#17211e;--text:#e6efec;--muted:#93a39d;--line:#27332f;--accent:#14a398}}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:var(--bg);color:var(--text);font-family:'Hind Siliguri','Noto Sans Bengali',sans-serif}
+button,select,input{font:inherit;border:0;cursor:pointer;-webkit-tap-highlight-color:transparent}
+input{cursor:text}
+.hidden{display:none!important}
+@font-face{font-family:'SutonnyOMJ';src:local('SutonnyOMJ'),local('Sutonny OMJ'),url('SutonnyOMJ.ttf') format('truetype'),url('SutonnyOMJ.woff2') format('woff2');font-weight:400 700;font-display:swap}
+/* ===== ফলাফল সীট ===== */
+#rs{position:fixed;inset:0;z-index:95;background:var(--bg);display:flex;flex-direction:column}
+#rs .tb{display:flex;align-items:center;gap:4px;padding:calc(4px + env(safe-area-inset-top)) 8px 4px;background:var(--accent);color:var(--on-accent);position:relative}
+#rs .tb button{min-width:34px;height:34px;padding:0 8px;border-radius:9px;background:rgba(255,255,255,.18);color:inherit;font-weight:700;font-size:14px;white-space:nowrap}
+#rs .tb .ttl{flex:1;font-weight:700;font-size:15px;min-width:60px}
+#rs .tb2{display:flex;gap:4px;align-items:center;overflow-x:auto;scrollbar-width:none;padding:4px 8px;background:var(--panel);border-bottom:1px solid var(--line)}
+#rs .tb2::-webkit-scrollbar{display:none}
+#rs .tb2>*{flex:none}
+#rs .tb2 button{min-width:32px;height:32px;padding:0 8px;border-radius:9px;border:1px solid var(--line);background:var(--bg);color:var(--text);font-size:13.5px;white-space:nowrap}
+#rs .tb2 button:disabled{opacity:.4}
+#rs .tb2 span{font-size:13px;color:var(--muted);padding:0 4px}
+#rs .tb2 .sep{width:1px;height:22px;background:var(--line);padding:0}
+#rs .hint{font-size:12px;color:var(--muted);padding:3px 10px;background:var(--panel);border-bottom:1px solid var(--line)}
+#rs .area{flex:1;overflow:auto;padding:10px;-webkit-overflow-scrolling:touch;background:#8a9490}
+#rs .wrap{position:relative;margin:0 auto}
+#rs .dl{position:absolute;right:8px;top:calc(100% + 2px);z-index:5;background:var(--panel);color:var(--text);border:1px solid var(--line);border-radius:12px;box-shadow:0 6px 20px rgba(0,0,0,.25);padding:6px;display:none;min-width:190px}
+#rs .dl button{display:block;width:100%;text-align:left;height:42px;padding:0 12px;background:none;color:var(--text);border-radius:8px;font-size:15px}
+#rs .dl button:active{background:var(--bg)}
+#rs .dl hr{border:0;border-top:1px solid var(--line);margin:4px 0}
+#rs .dl label{display:flex;gap:6px;align-items:center;padding:6px 12px;font-size:13px;color:var(--muted)}
+.rpg{position:absolute;left:0;top:0;width:1123px;height:794px;background:#fff;color:#111;overflow:hidden;transform-origin:0 0;font-family:'SutonnyOMJ','Sutonny OMJ','Hind Siliguri','Noto Sans Bengali',sans-serif;line-height:1.35;box-shadow:0 2px 14px rgba(0,0,0,.35)}
+.rpg *{box-sizing:border-box}
+.rpg [contenteditable]{outline:none;min-width:8px}
+.rpg [contenteditable]:focus{background:rgba(37,99,235,.10)}
+.rpg .in{position:relative;width:100%}
+.rpg .r-top{display:grid;grid-template-columns:210px 1fr 210px;align-items:start}
+.rpg .r-c{text-align:center;padding:0 6px}
+.rpg .r-inst{font-size:var(--f-inst,30px);font-weight:700;line-height:1.25}
+.rpg .r-addr{font-size:var(--f-info,14px)}
+.rpg .r-year{font-size:calc(var(--f-info,14px) + 3px);font-weight:700;text-decoration:underline;margin-top:2px}
+.rpg .r-exam{font-size:calc(var(--f-info,14px) + 6px);font-weight:700;text-decoration:underline;margin-top:2px}
+.rpg .r-box{border:1.5px solid #111;padding:4px 8px;font-size:var(--f-box,13.5px);line-height:1.45;justify-self:end;width:210px}
+.rpg .r-box b{display:block;text-align:center;font-size:calc(var(--f-box,13.5px) + .5px)}
+.rpg .r-mid{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;margin:4px 0 6px;font-size:var(--f-mid,16px);font-weight:700}
+.rpg .r-mid>div:last-child{text-align:right}
+.rpg .r-cls{font-size:var(--f-cls,30px);font-weight:700;padding:0 20px;min-width:120px;text-align:center}
+.rpg table.r-t{width:100%;table-layout:fixed;border-collapse:separate;border-spacing:0;border-left:1.5px solid #111;border-top:1.5px solid #111;font-size:var(--f-tb,15px)}
+.rpg .r-t th,.rpg .r-t td{border-right:1.5px solid #111;border-bottom:1.5px solid #111;padding:2px 3px;text-align:center;vertical-align:middle;overflow-wrap:anywhere}
+.rpg .r-t th{font-size:var(--f-th,13px);font-weight:700;line-height:1.25;height:62px}
+.rpg .r-t td{height:var(--rh,34px);padding-top:1px;padding-bottom:1px;font-weight:500}
+.rpg .r-t td.nm{text-align:left;font-weight:600;padding-left:6px}
+.rpg .r-t td.tot,.rpg .r-t td.avg,.rpg .r-t td.dv,.rpg .r-t td.rk{font-weight:700}
+.rpg .r-t td.fail{background:#d4d4d4}
+.rpg .r-t tr.rasib td.tot,.rpg .r-t tr.rasib td.avg,.rpg .r-t tr.rasib td.dv,.rpg .r-t tr.rasib td.rk{background:#d4d4d4}
+.rpg .r-t th.sel,.rpg .r-t td.sel{outline:3px solid #2563eb;outline-offset:-3px}
+.rpg .r-sum{margin-top:6px;font-size:var(--f-sum,15px);font-weight:600}
+.rpg .r-sig{margin-top:10px;text-align:right;font-size:var(--f-sig,14px);font-weight:600}
+#rs .rpg:not(.cap) th[data-s]:empty::before{content:'কিতাবের নাম';color:#b8b8b8;font-weight:400}
+#rs .rpg:not(.cap) td.dk:empty::before{content:'';}
+#rsSet{position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.5);display:flex;align-items:flex-end;justify-content:center}
+#rsSet.hidden{display:none!important}
+#rsSet .card{width:100%;max-width:560px;max-height:88%;overflow:auto;background:var(--panel);color:var(--text);border-radius:18px 18px 0 0;padding:14px 16px calc(16px + env(safe-area-inset-bottom))}
+#rsSet h3{margin:0 0 8px;font-size:17px}
+#rsSet .g{display:grid;grid-template-columns:1fr 110px;gap:6px 10px;align-items:center;margin:6px 0}
+#rsSet input{width:100%;height:36px;border:1px solid var(--line);border-radius:9px;background:var(--bg);color:var(--text);padding:0 8px;font-size:15px}
+#rsSet .row{display:flex;gap:8px;margin-top:12px}
+#rsSet .row button{flex:1;height:42px;border-radius:10px;font-weight:700;font-size:15px}
+#rsSet .ok{background:var(--accent);color:var(--on-accent)}
+#rsSet .no{background:var(--bg);color:var(--text);border:1px solid var(--line)}
+#rsSet small{color:var(--muted);display:block;margin:6px 0 0;font-size:12px}
+/* ===== মাদরাসা ম্যানেজমেন্ট ===== */
+#app{min-height:100%}
+.hd{background:var(--accent);color:var(--on-accent);padding:calc(14px + env(safe-area-inset-top)) 16px 14px}
+.hd .nm{font-size:22px;font-weight:700;line-height:1.3}
+.hd .ad{font-size:14px;opacity:.92;margin-top:2px}
+.hd [contenteditable]{outline:none;min-height:1.2em;border-radius:6px}
+.hd [contenteditable]:focus{background:rgba(255,255,255,.18)}
+.sb{display:flex;align-items:center;gap:10px;padding:8px 12px;background:var(--panel);border-bottom:1px solid var(--line)}
+.sb button{width:38px;height:38px;border-radius:10px;background:var(--bg);color:var(--text);font-size:18px;border:1px solid var(--line)}
+.sb b{font-size:17px}
+#main{padding:14px 14px calc(96px + env(safe-area-inset-bottom))}
+.mn{display:block;width:100%;text-align:left;background:var(--panel);border:1px solid var(--line);border-left:5px solid var(--accent);border-radius:12px;padding:16px;margin-bottom:10px;color:var(--text);font-size:17px;font-weight:600}
+.mn small{display:block;font-weight:400;color:var(--muted);font-size:13px;margin-top:2px}
+.chips{display:flex;gap:6px;overflow-x:auto;padding-bottom:8px;scrollbar-width:none}
+.chip{flex:none;padding:8px 15px;border-radius:99px;background:var(--panel);border:1px solid var(--line);color:var(--text)}
+.chip.on{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
+.tools{display:flex;gap:6px;margin:2px 0 8px}
+.tools button{padding:7px 11px;border-radius:9px;background:var(--panel);border:1px solid var(--line);color:var(--text);font-size:13.5px}
+.cnt{font-weight:700;margin:8px 2px}
+.emp{color:var(--muted);padding:14px 4px}
+.sr{display:flex;gap:12px;align-items:center;width:100%;text-align:left;padding:12px;background:var(--panel);border-bottom:1px solid var(--line);color:var(--text);font-size:16px}
+.sn{min-width:38px;font-weight:700;color:var(--accent)}
+.fab{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom));padding:14px 20px;border-radius:99px;background:var(--accent);color:var(--on-accent);font-weight:700;font-size:16px;box-shadow:0 4px 14px rgba(0,0,0,.3)}
+.mon{margin:2px 0 10px}
+.mon input,#sm input,#sm select,.br input{height:40px;border:1px solid var(--line);border-radius:9px;background:var(--panel);color:var(--text);padding:0 8px;font-size:15px;min-width:0}
+.bh,.br{display:grid;grid-template-columns:38px 1fr 84px 84px;gap:6px;align-items:center;padding:6px 4px;border-bottom:1px solid var(--line)}
+.bh{font-weight:700;font-size:13px;color:var(--muted)}
+.br .bn{overflow-wrap:anywhere}
+.br.tot{font-weight:700;border-bottom:0;background:var(--panel);border-radius:10px;margin-top:6px}
+.ov{position:fixed;inset:0;z-index:60;background:rgba(0,0,0,.5);display:flex;align-items:flex-end;justify-content:center}
+.ov.hidden{display:none!important}
+.ov .card{width:100%;max-width:520px;background:var(--panel);color:var(--text);border-radius:18px 18px 0 0;padding:14px 16px calc(16px + env(safe-area-inset-bottom))}
+.ov h3{margin:0 0 6px}
+.ov label{display:block;margin-top:10px;font-size:14px;color:var(--muted)}
+.ov label input,.ov label select{display:block;width:100%;margin-top:4px;color:var(--text)}
+.acts{display:flex;gap:8px;margin-top:14px}
+.acts button{flex:1;height:44px;border-radius:10px;font-weight:700;border:1px solid var(--line);background:var(--bg);color:var(--text)}
+.acts .ok2{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
+.acts .del{color:#c0392b}
+.ov .card{max-height:92%;overflow:auto}
+.av{flex:none;width:46px;height:46px;border-radius:50%;object-fit:cover;background:var(--accent);color:var(--on-accent);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:18px}
+.gr{flex:1;min-width:0}
+.gr b{display:block;font-weight:600}
+.gr small{display:block;color:var(--muted);font-size:12.5px}
+.rt em{font-style:normal;color:#c0392b;font-weight:700;font-size:13px}
+.sum{margin:12px 0;padding:12px;background:var(--panel);border:1px solid var(--line);border-radius:10px;font-size:15px;line-height:1.7}
+.yn{display:flex;align-items:center;justify-content:center;gap:14px;margin:6px 0 10px;font-size:18px}
+.yn button{width:40px;height:36px;border-radius:9px;background:var(--panel);border:1px solid var(--line);color:var(--text)}
+.jr{display:flex;align-items:center;gap:6px;padding:10px 8px;background:var(--panel);border-bottom:1px solid var(--line)}
+.jr button{width:38px;height:38px;border-radius:9px;background:var(--bg);border:1px solid var(--line);color:var(--text)}
+.jr button:disabled{opacity:.35}
+.fl{display:block;margin:4px 0 8px;font-size:14px;color:var(--muted)}
+.fl input{display:block;width:100%;margin-top:4px;height:42px;border:1px solid var(--line);border-radius:9px;background:var(--panel);color:var(--text);padding:0 10px;font-size:16px}
+.bh,.br{grid-template-columns:82px 1fr 78px}
+.br .pf{display:flex;gap:4px;min-width:0}
+.br .pf input{flex:1;width:100%}
+.br .pf button{flex:none;width:36px;border-radius:9px;background:var(--bg);border:1px solid var(--line);color:var(--accent);font-weight:700}
+.br.due .mn2{color:#c0392b;font-weight:700}
+.phr{display:flex;align-items:center;gap:12px;margin-top:10px}
+.phr .av{width:64px;height:64px}
+.phr button{display:block;margin:4px 0;padding:8px 12px;border-radius:9px;background:var(--bg);border:1px solid var(--line);color:var(--text);font-size:14px}
+.sr{justify-content:flex-start}
+.br.fe{grid-template-columns:34px 1fr 84px 40px}
+.br.fe button{height:40px;border-radius:9px;background:var(--bg);border:1px solid var(--line);color:var(--accent);font-weight:700}
+.br.fe.on button{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
+
+:root{--red:#c0392b}
+@media(prefers-color-scheme:dark){:root{--red:#ef6a5b}}
+.xm{color:var(--red);font-weight:700}
+.sr.lf,.br.fe.lf{background:rgba(192,57,43,.1)}
+.sr.lf .sn,.sr.lf .gr b,.sr.lf .gr small,.br.fe.lf .sn,.br.fe.lf .gr b,.br.fe.lf .gr small{color:var(--red)}
+.sr.lf .av{background:var(--red);color:#fff}
+#smL{margin-top:12px;width:100%;height:42px;border-radius:10px;border:1px solid var(--red);color:var(--red);background:transparent;font-weight:700}
+</style>
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+</head>
+<body>
+<div id="app">
+  <div class="hd"><div class="nm" id="nm" contenteditable="true" aria-label="মাদরাসার নাম"></div><div class="ad" id="ad" contenteditable="true" aria-label="ঠিকানা"></div></div>
+  <div class="sb hidden" id="sb"><button id="bk" aria-label="পেছনে">←</button><b id="bt"></b></div>
+  <div id="main"></div>
+</div>
+<div id="sm" class="ov hidden"><div class="card"><h3>ছাত্রের তথ্য</h3>
+  <div class="phr"><img id="smPi" class="av hidden" alt=""><div><button type="button" id="smPb">📷 ছবি বাছুন</button><button type="button" id="smPr">ছবি মুছুন</button></div></div>
+  <input type="file" id="smP" accept="image/*" class="hidden">
+  <label>ছাত্রের নাম<input id="smN"></label>
+  <label>বাবার নাম<input id="smF"></label>
+  <label>জামাত<select id="smJ"></select></label>
+  <label>দাখেলা নং<input id="smK" inputmode="numeric"></label>
+  <label>ঠিকানা<input id="smA"></label>
+  <label>মোবাইল নং<input id="smM" inputmode="tel"></label>
+  <label>জন্ম সনদ / আইডি কার্ড নং<input id="smI"></label>
+  <button type="button" id="smL">✖ ছাত্র চলে গেছে</button>
+  <div id="smLb" class="hidden"><label>চলে যাওয়ার তারিখ<input type="date" id="smLD"></label><label>কেন চলে গেছে (নোট)<input id="smLR"></label></div>
+  <div class="acts"><button class="del" id="smD">মুছুন</button><button id="smX">বাতিল</button><button class="ok2" id="smS">সংরক্ষণ</button></div>
+</div></div>
+<div id="rs" class="hidden">
+  <div class="tb">
+    <button id="rsBack" aria-label="পেছনে">←</button><div class="ttl">📊 ফলাফল সীট</div>
+    <button id="rsGear" aria-label="নিয়ম ও মার্জিন">⚙</button>
+    <button id="rsDl">⬇ ডাউনলোড</button>
+    <div class="dl" id="rsMenu"><button data-f="pdf">📄 PDF (সব পাতা)</button><button data-f="jpg">🖼 JPG</button><button data-f="png">🖼 PNG</button><hr><label>মান: <select id="rsQ"><option value="3">উচ্চ (৩×)</option><option value="4">অতি উচ্চ (৪×)</option><option value="2">সাধারণ (২×)</option></select></label></div>
+  </div>
+  <div class="tb2">
+    <button id="rsPrev">◀</button><span id="rsNum">পাতা ১/১</span><button id="rsNext">▶</button>
+    <button id="rsImp">🔄 নাম হালনাগাদ</button><i class="sep"></i><button id="rsAddP">＋ নতুন পাতা</button><button id="rsDelP">🗑 পাতা</button><i class="sep"></i>
+    <button id="rsAddC">＋ কিতাব</button><button id="rsDelC">🗑 কিতাব</button><i class="sep"></i>
+    <button id="rsAddR">＋ ছাত্র</button><button id="rsDelR">🗑 ছাত্র</button><i class="sep"></i>
+    <button id="rsFm" aria-label="লেখা ছোট">A−</button><span id="rsFs">১৫</span><button id="rsFp" aria-label="লেখা বড়">A＋</button><i class="sep"></i><button id="rsZo">🔍−</button><button id="rsZf">ফিট</button><button id="rsZi">🔍＋</button>
+  </div>
+  <div class="hint" id="rsHint">কিতাব মুছতে কিতাবের নামের ঘরে, ছাত্র মুছতে ক্রম নম্বরে একবার ট্যাপ করে বাছুন।</div>
+  <div class="area" id="rsArea"><div class="wrap" id="rsWrap"><div class="rpg" id="rsPg"></div></div></div>
+  <div id="rsSet" class="hidden"><div class="card">
+    <h3>⚙ নিয়ম ও মার্জিন (এই পাতার জন্য)</h3>
+    <div class="g"><span>প্রতি বিষয়ে পূর্ণমান</span><input id="sFull" inputmode="numeric"></div>
+    <div class="g"><span>বিষয়ে পাস নম্বর (এর কম হলে রাসিব)</span><input id="sPm" inputmode="numeric"></div>
+    <div class="g"><span>মুমতায (% থেকে)</span><input id="sP0" inputmode="numeric"></div>
+    <div class="g"><span>জা.জি. (% থেকে)</span><input id="sP1" inputmode="numeric"></div>
+    <div class="g"><span>জায়্যিদ (% থেকে)</span><input id="sP2" inputmode="numeric"></div>
+    <div class="g"><span>মাকবুল (% থেকে)</span><input id="sP3" inputmode="numeric"></div>
+    <div class="g"><span>মার্জিন (মি.মি.)</span><input id="sMg" inputmode="numeric"></div>
+    <h3 style="margin-top:12px">লেখার আকার (পিক্সেল)</h3>
+    <div class="g"><span>মাদরাসার নাম (শিরোনাম)</span><input id="sF_inst" inputmode="numeric"></div>
+    <div class="g"><span>ঠিকানা, সাল, পরীক্ষার নাম</span><input id="sF_info" inputmode="numeric"></div>
+    <div class="g"><span>শ্রেণীর নাম (সানাবিয়া)</span><input id="sF_cls" inputmode="numeric"></div>
+    <div class="g"><span>বিভাগ বিন্যাস বক্স</span><input id="sF_box" inputmode="numeric"></div>
+    <div class="g"><span>পরীক্ষার্থী ও পাশের হার</span><input id="sF_mid" inputmode="numeric"></div>
+    <div class="g"><span>কিতাবের নাম (ওপরের সারি)</span><input id="sF_th" inputmode="numeric"></div>
+    <div class="g"><span>ছাত্রের নাম, নম্বর, ফল</span><input id="sF_tb" inputmode="numeric"></div>
+    <div class="g"><span>নিচের গণনার লাইন</span><input id="sF_sum" inputmode="numeric"></div>
+    <div class="g"><span>স্বাক্ষর</span><input id="sF_sig" inputmode="numeric"></div>
+    <h3 style="margin-top:12px">বিভাগের নাম</h3>
+    <div class="g"><span>১ম</span><input id="sD0"></div><div class="g"><span>২য়</span><input id="sD1"></div><div class="g"><span>৩য়</span><input id="sD2"></div><div class="g"><span>৪র্থ</span><input id="sD3"></div><div class="g"><span>অকৃতকার্য</span><input id="sD4"></div>
+    <small>শতাংশ মানে মোট পূর্ণমানের কত শতাংশ পেলে সেই বিভাগ। নিচের শতাংশের কম পেলে রাসিব।</small>
+    <div class="row"><button class="no" id="sNo">বাতিল</button><button class="ok" id="sOk">সংরক্ষণ</button></div>
+  </div></div>
+</div>
+<script>
+(function(){
+var DG='০১২৩৪৫৬৭৮৯';
+function $(i){return document.getElementById(i);}
+function bn(x){return String(x).replace(/\d/g,function(d){return DG[d];});}
+function en(x){return String(x).replace(/[০-৯]/g,function(d){return DG.indexOf(d);});}
+function num(x){var t=en(x).replace(/[^\d.]/g,'');if(t==='')return null;var v=parseFloat(t);return isNaN(v)?null:v;}
+function esc(x){return String(x==null?'':x).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+var D=null;try{D=JSON.parse(localStorage.getItem('mm_v1')||'null');}catch(e){}
+if(!D||!D.students)D={name:'কেন্দ্রীয় দারুল উলূম বাবুস সালাম মাদরাসা',addr:'আশকোনা, দক্ষিণখান, ঢাকা-১২৩০।',jamats:['নূরানী','হিফজ','ইবতেদাইয়্যাহ','মুতাওয়াসসিতাহ','সানাবিয়া','ফযীলত','তাকমীল'],students:[],bills:{},nid:1};
+window.APPD=D;D.ef=D.ef||{};D.efd=D.efd||{};
+function sv(){try{localStorage.setItem('mm_v1',JSON.stringify(D));}catch(e){alert('ফোনের জায়গা ভরে গেছে, সেভ হচ্ছে না।');}}
+var NOW=new Date(),cur='home',cj=D.jamats[0]||'',ed=null,cs=null,ph='',ex=1,lf=false,yr=NOW.getFullYear();
+var MN=['জানুয়ারি','ফেব্রুয়ারি','মার্চ','এপ্রিল','মে','জুন','জুলাই','আগস্ট','সেপ্টেম্বর','অক্টোবর','নভেম্বর','ডিসেম্বর'];
+var XN={1:'১ম সাময়িক',2:'২য় সাময়িক',3:'৩য় সাময়িক'};
+var T={stud:'ছাত্র',list:'জামাত অনুযায়ী ছাত্র তালিকা',bills:'বেতন ও বিদ্যুৎ বিল',bill:'',exam:'পরীক্ষার ফলাফল',jm:'জামাত সম্পাদনা',efee:'পরীক্ষার ফি'};
+var PR={stud:'home',list:'stud',bills:'stud',bill:'bills',exam:'stud',jm:'stud',efee:'stud',rs:'exam'};
+function sorted(c){return D.students.filter(function(s){return s.j===c;}).sort(function(a,b){var x=num(a.no),y=num(b.no);x=x===null?1e9:x;y=y===null?1e9:y;return (x-y)||a.name.localeCompare(b.name);});}
+function stu(id){return D.students.filter(function(s){return s.id===id;})[0];}
+window.APPAPI={classes:function(){return D.jamats.slice();},studentsOf:sorted,paid:function(n,c){return sorted(c).filter(function(s){return actPaid(n,s);});},left:function(c){return sorted(c).filter(function(s){return s.left;});}};
+$('nm').textContent=D.name;$('ad').textContent=D.addr;
+['nm','ad'].forEach(function(i){var e=$(i);e.addEventListener('input',function(){D[i==='nm'?'name':'addr']=e.innerText.replace(/\n/g,' ').trim();sv();});e.addEventListener('keydown',function(ev){if(ev.key==='Enter'){ev.preventDefault();e.blur();}});});
+/* বিল হিসাব: bills['YYYY-MM'][ছাত্র id]={b:বেতন জমা,e:বিদ্যুৎ} */
+function bk(m){return yr+'-'+(m<9?'0':'')+(m+1);}
+function rec(id,m){return (D.bills[bk(m)]||{})[id]||{};}
+function setRec(id,m,k,v){var B=D.bills[bk(m)]=D.bills[bk(m)]||{};(B[id]=B[id]||{})[k]=v;}
+function isDue(s,m){var f=num(s.fee)||0;return f>0&&(yr<NOW.getFullYear()||(yr===NOW.getFullYear()&&m<=NOW.getMonth()))&&(!s.left||!s.ld||bk(m)<=s.ld.slice(0,7))&&(num(rec(s.id,m).b)||0)<f;}
+function ysum(s){var p=0,e=0,d=0,f=num(s.fee)||0;for(var m=0;m<12;m++){var r=rec(s.id,m);p+=num(r.b)||0;e+=num(r.e)||0;if(isDue(s,m))d+=f-(num(r.b)||0);}return {p:p,e:e,d:d};}
+function chips(){return '<div class="chips">'+D.jamats.map(function(j,i){return '<button class="chip'+(j===cj?' on':'')+'" data-j="'+i+'">'+esc(j)+'</button>';}).join('')+'</div>';}
+function yn(){return '<div class="yn"><button data-a="yp">◀</button><b>'+bn(yr)+'</b><button data-a="yn">▶</button></div>';}
+function emp(){return '<p class="emp">এই জামাতে এখনো কোনো ছাত্র নেই। ছাত্র তালিকা থেকে ছাত্র যোগ করুন।</p>';}
+function avt(s){return s.p?'<img class="av" alt="" src="'+s.p+'">':'<span class="av">'+esc((s.name||'?').charAt(0))+'</span>';}
+function vHome(){return '<button class="mn" data-g="stud">👨‍🎓 ছাত্র<small>জামাত অনুযায়ী তালিকা, বেতন ও বিদ্যুৎ বিল, পরীক্ষার ফলাফল</small></button>';}
+function vStud(){return '<button class="mn" data-g="list">📋 জামাত অনুযায়ী ছাত্র তালিকা<small>ছাত্র যোগ ও তথ্য সম্পাদনা</small></button><button class="mn" data-g="bills">💰 বেতন ও বিদ্যুৎ বিল<small>নির্ধারিত বেতন ও বারো মাসের হিসাব</small></button><button class="mn" data-g="efee">💳 পরীক্ষার ফি<small>ফি জমা হলেই ফলাফল সীটে নাম আসবে</small></button><button class="mn" data-g="exam">📊 পরীক্ষার ফলাফল<small>১ম, ২য় ও ৩য় সাময়িক</small></button><button class="mn" data-g="jm">⚙ জামাত সম্পাদনা<small>জামাত যোগ, নাম বদল, ক্রম ও মোছা</small></button>';}
+function vExam(){return '<button class="mn" data-g="efee">💳 পরীক্ষার ফি<small>ফি জমা হলেই ফলাফল সীটে নাম আসবে</small></button>'+[1,2,3].map(function(n){var c=D.students.filter(function(s){return actPaid(n,s);}).length;return '<button class="mn" data-x="'+n+'">'+XN[n]+' পরীক্ষা<small>ফি জমা: '+bn(c)+' জন, নাম নিজে থেকে আসবে</small></button>';}).join('');}
+function vJm(){var h='';D.jamats.forEach(function(j,i){var n=D.students.filter(function(s){return s.j===j;}).length;
+  h+='<div class="jr"><span class="gr"><b>'+esc(j)+'</b><small>'+bn(n)+' জন ছাত্র</small></span><button data-a="ju" data-i="'+i+'"'+(i?'':' disabled')+'>↑</button><button data-a="jd" data-i="'+i+'"'+(i<D.jamats.length-1?'':' disabled')+'>↓</button><button data-a="jr" data-i="'+i+'">✎</button><button data-a="jx" data-i="'+i+'">🗑</button></div>';});
+  return h+'<button class="fab" data-a="aj">＋ নতুন জামাত</button>';}
+function vList(){var L=sorted(cj),lc=L.filter(function(s){return s.left;}).length,h=chips()+'<div class="tools"><button data-g="jm">⚙ জামাত সম্পাদনা</button></div><div class="cnt">'+esc(cj)+' — '+bn(L.length-lc)+' জন'+(lc?' (চলে গেছে '+bn(lc)+' জন)':'')+'</div>';
+  if(!L.length)h+=emp();
+  L.forEach(function(s){h+='<button class="sr'+(s.left?' lf':'')+'" data-e="'+s.id+'"><span class="sn">'+esc(s.no)+'</span>'+avt(s)+'<span class="gr"><b>'+esc(s.name)+xm(s)+'</b>'+lfx(s)+(s.fa?'<small>পিতা: '+esc(s.fa)+'</small>':'')+(s.mo?'<small>মোবাইল: '+esc(s.mo)+'</small>':'')+'</span></button>';});
+  return h+'<button class="fab" data-a="as">＋ ছাত্র যোগ</button>';}
+function vBills(){var L=sorted(cj),h=chips()+yn(),tp=0,te=0,td=0;
+  if(!L.length)return h+emp();
+  L.forEach(function(s){var y=ysum(s);tp+=y.p;te+=y.e;td+=y.d;
+    h+='<button class="sr'+(s.left?' lf':'')+'" data-s="'+s.id+'"><span class="sn">'+esc(s.no)+'</span><span class="gr"><b>'+esc(s.name)+xm(s)+'</b>'+lfx(s)+'<small>নির্ধারিত বেতন: '+(num(s.fee)?bn(num(s.fee))+' টাকা':'দেওয়া হয়নি')+'</small></span><span class="rt">'+(y.d?'<em>বকেয়া '+bn(y.d)+'</em>':'')+'</span></button>';});
+  return h+'<div class="sum">'+esc(cj)+' জামাতের '+bn(yr)+' সাল<br>জমা বেতন: <b>'+bn(tp)+'</b> টাকা<br>বিদ্যুৎ বিল: <b>'+bn(te)+'</b> টাকা<br>বকেয়া বেতন: <b>'+bn(td)+'</b> টাকা</div>';}
+function vBill(){var s=stu(cs);if(!s)return '';
+  var h='<div class="sr'+(s.left?' lf':'')+'" style="border-radius:10px;margin-bottom:8px">'+avt(s)+'<span class="gr"><b>'+esc(s.name)+xm(s)+'</b>'+lfx(s)+'<small>'+esc(s.j)+', দাখেলা নং '+esc(s.no)+'</small></span></div>';
+  h+='<label class="fl">নির্ধারিত মাসিক বেতন (টাকা)<input id="bf" inputmode="numeric" value="'+esc(s.fee||'')+'"></label>'+yn();
+  h+='<div class="bh"><span>মাস</span><span>বেতন জমা (✔ = পুরো বেতন)</span><span>বিদ্যুৎ</span></div>';
+  for(var m=0;m<12;m++){var r=rec(s.id,m);
+    h+='<div class="br" data-mm="'+m+'"><span class="mn2">'+MN[m]+'</span><span class="pf"><input inputmode="numeric" data-m="'+m+'" data-k="b" value="'+esc(r.b||'')+'"><button data-a="pay" data-m="'+m+'">✔</button></span><input inputmode="numeric" data-m="'+m+'" data-k="e" value="'+esc(r.e||'')+'"></div>';}
+  return h+'<div class="sum" id="bs"></div>';}
+function refBill(){var s=stu(cs);if(!s||!$('bs'))return;
+  Array.prototype.forEach.call(document.querySelectorAll('#main .br[data-mm]'),function(r){r.classList.toggle('due',isDue(s,+r.getAttribute('data-mm')));});
+  var y=ysum(s);$('bs').innerHTML=bn(yr)+' সালের হিসাব<br>জমা বেতন: <b>'+bn(y.p)+'</b> টাকা<br>বিদ্যুৎ বিল: <b>'+bn(y.e)+'</b> টাকা<br>বকেয়া বেতন: <b>'+bn(y.d)+'</b> টাকা';}
+function paidN(n,id){return (num((D.ef[n]||{})[id])||0)>0;}
+function actPaid(n,s){return !s.left&&paidN(n,s.id);}
+function xm(s){return s.left?' <span class="xm">✖</span>':'';}
+function lfx(s){return s.left?'<small>চলে গেছে'+(s.ld?' ('+bn(s.ld)+')':'')+(s.lr?'। কারণ: '+esc(s.lr):'')+'</small>':'';}
+function today(){var m=NOW.getMonth()+1,d=NOW.getDate();return NOW.getFullYear()+'-'+(m<10?'0':'')+m+'-'+(d<10?'0':'')+d;}
+function vEfee(){var L=sorted(cj),h='<div class="chips">'+[1,2,3].map(function(n){return '<button class="chip'+(n===ex?' on':'')+'" data-xe="'+n+'">'+XN[n]+'</button>';}).join('')+'</div><label class="fl">'+XN[ex]+' পরীক্ষার নির্ধারিত ফি (টাকা)<input id="ef" inputmode="numeric" value="'+esc(D.efd[ex]||'')+'"></label>'+chips();
+  if(!L.length)return h+emp();
+  L.forEach(function(s){h+='<div class="br fe'+(s.left?' lf':'')+'" data-fr="'+s.id+'"><span class="sn">'+esc(s.no)+'</span><span class="gr"><b>'+esc(s.name)+xm(s)+'</b><small></small></span><input inputmode="numeric" data-fe="'+s.id+'" value="'+esc((D.ef[ex]||{})[s.id]||'')+'"><button data-a="fpay" data-i="'+s.id+'">✔</button></div>';});
+  return h+'<div class="sum" id="fs"></div>';}
+function refFee(){var c=0,u=0,t=0;
+  Array.prototype.forEach.call(document.querySelectorAll('#main .br.fe'),function(r){var id=+r.getAttribute('data-fr'),s=stu(id),p=paidN(ex,id);r.classList.toggle('on',p&&!s.left);r.querySelector('small').textContent=s.left?'চলে গেছে, সীটে আসবে না':(p?'ফলাফল সীটে নাম আসবে':'ফি জমা নেই, সীটে আসবে না');if(p)t+=num((D.ef[ex]||{})[id])||0;if(!s.left){if(p)c++;else u++;}});
+  if($('fs'))$('fs').innerHTML=esc(cj)+' জামাত, '+XN[ex]+'<br>ফি জমা: <b>'+bn(c)+'</b> জন<br>ফি বাকি: <b>'+bn(u)+'</b> জন<br>মোট ফি: <b>'+bn(t)+'</b> টাকা';}
+function render(s){cur=s;$('rs').classList.toggle('hidden',s!=='rs');if(s==='rs')return;
+  $('sb').classList.toggle('hidden',s==='home');$('bt').textContent=s==='bill'?(stu(cs)||{}).name||'':T[s]||'';
+  $('main').innerHTML={home:vHome,stud:vStud,list:vList,bills:vBills,bill:vBill,exam:vExam,jm:vJm,efee:vEfee}[s]();if(s==='bill')refBill();if(s==='efee')refFee();}
+function nav(s){try{history.pushState({s:s},'');}catch(e){}render(s);}
+window.mmBack=function(){try{if(history.state&&history.state.s===cur){history.back();return;}}catch(e){}render(PR[cur]||'home');};
+window.addEventListener('popstate',function(e){render((e.state&&e.state.s)||'home');});
+try{history.replaceState({s:'home'},'');}catch(e){}
+$('bk').onclick=window.mmBack;
+function showPh(){$('smPi').classList.toggle('hidden',!ph);if(ph)$('smPi').src=ph;}
+function showLf(){$('smLb').classList.toggle('hidden',!lf);$('smL').textContent=lf?'↩ চলে যাওয়া বাতিল (ফিরে এসেছে)':'✖ ছাত্র চলে গেছে';}
+function openSm(id){ed=id;var s=id?stu(id):null;
+  if(!D.jamats.length){alert('আগে একটা জামাত যোগ করুন।');return;}
+  $('smN').value=s?s.name:'';$('smF').value=s&&s.fa||'';$('smA').value=s&&s.ad||'';$('smM').value=s&&s.mo||'';$('smI').value=s&&s.ic||'';ph=s&&s.p||'';showPh();lf=!!(s&&s.left);$('smLD').value=(s&&s.ld)||today();$('smLR').value=(s&&s.lr)||'';showLf();
+  $('smJ').innerHTML=D.jamats.map(function(j){return '<option>'+esc(j)+'</option>';}).join('');$('smJ').value=s?s.j:cj;
+  var mx=0;sorted(cj).forEach(function(x){mx=Math.max(mx,num(x.no)||0);});$('smK').value=s?s.no:bn(mx+1);
+  $('smD').classList.toggle('hidden',!s);$('sm').classList.remove('hidden');}
+$('smPb').onclick=function(){$('smP').click();};
+$('smPr').onclick=function(){ph='';showPh();};
+$('smP').onchange=function(){var f=this.files[0],inp=this;if(!f)return;var r=new FileReader();r.onload=function(){var im=new Image();im.onload=function(){var k=Math.min(1,360/Math.max(im.width,im.height)),c=document.createElement('canvas');c.width=Math.round(im.width*k);c.height=Math.round(im.height*k);c.getContext('2d').drawImage(im,0,0,c.width,c.height);ph=c.toDataURL('image/jpeg',0.8);showPh();};im.src=r.result;};r.readAsDataURL(f);inp.value='';};
+$('smL').onclick=function(){lf=!lf;showLf();};
+$('smX').onclick=function(){$('sm').classList.add('hidden');};
+$('smS').onclick=function(){var n=$('smN').value.trim(),k=bn(en($('smK').value).trim()),j=$('smJ').value;
+  if(!n||!k){alert('ছাত্রের নাম ও দাখেলা নং দুটোই লিখুন।');return;}
+  if(D.students.some(function(s){return s.j===j&&s.no===k&&s.id!==ed;})){alert('এই জামাতে এই দাখেলা নং আগে থেকেই আছে।');return;}
+  var wasL=ed&&stu(ed).left;if(lf&&!wasL&&!confirm('এই ছাত্রকে "চলে গেছে" হিসেবে চিহ্নিত করবেন?\nপরীক্ষার ফলাফল সীট থেকে নাম সরে যাবে।'))return;
+  var s=ed?stu(ed):{id:D.nid++};
+  s.name=n;s.no=k;s.j=j;s.fa=$('smF').value.trim();s.ad=$('smA').value.trim();s.mo=bn(en($('smM').value).trim());s.ic=$('smI').value.trim();s.p=ph;s.left=lf;s.ld=lf?$('smLD').value:'';s.lr=lf?$('smLR').value.trim():'';
+  if(!ed)D.students.push(s);
+  cj=j;sv();$('sm').classList.add('hidden');render(cur);};
+$('smD').onclick=function(){if(!confirm('এই ছাত্রকে মুছবেন?'))return;D.students=D.students.filter(function(s){return s.id!==ed;});sv();$('sm').classList.add('hidden');render(cur);};
+$('main').addEventListener('click',function(ev){var t=ev.target.closest('[data-j],[data-a],[data-e],[data-g],[data-x],[data-s],[data-xe]');if(!t)return;
+  if(t.hasAttribute('data-j')){cj=D.jamats[+t.getAttribute('data-j')];render(cur);}
+  else if(t.hasAttribute('data-g'))nav(t.getAttribute('data-g'));
+  else if(t.hasAttribute('data-e'))openSm(+t.getAttribute('data-e'));
+  else if(t.hasAttribute('data-xe')){ex=+t.getAttribute('data-xe');render(cur);}
+  else if(t.hasAttribute('data-s')){cs=+t.getAttribute('data-s');nav('bill');}
+  else if(t.hasAttribute('data-x')){var n=+t.getAttribute('data-x');nav('rs');window.__rs.open('rs_e'+n,XN[n]+' পরীক্ষার ফলাফল',n);if(!D.students.some(function(s){return actPaid(n,s);}))alert('এই পরীক্ষার ফি জমা দেওয়া কোনো ছাত্র নেই। আগে "পরীক্ষার ফি" থেকে ফি যোগ করুন, তাহলে নাম নিজে থেকে আসবে।');}
+  else{var a=t.getAttribute('data-a'),i=+t.getAttribute('data-i'),J=D.jamats;
+    if(a==='as')openSm(null);
+    else if(a==='fpay'){var id=+t.getAttribute('data-i'),E=D.ef[ex]=D.ef[ex]||{};if(paidN(ex,id))delete E[id];else{var f2=num(D.efd[ex]);if(!f2){alert('আগে এই পরীক্ষার নির্ধারিত ফি লিখুন।');return;}E[id]=bn(f2);}sv();render('efee');}
+    else if(a==='yp'){yr--;render(cur);}
+    else if(a==='yn'){yr++;render(cur);}
+    else if(a==='pay'){var s=stu(cs),f=num(s.fee);if(!f){alert('আগে নির্ধারিত মাসিক বেতন লিখুন।');return;}setRec(cs,+t.getAttribute('data-m'),'b',bn(f));sv();render('bill');}
+    else if(a==='aj'){var n=(prompt('নতুন জামাতের নাম')||'').trim();if(n&&J.indexOf(n)<0){J.push(n);cj=n;sv();render(cur);}}
+    else if(a==='ju'||a==='jd'){var k=a==='ju'?i-1:i+1;if(k>=0&&k<J.length){var x=J[i];J[i]=J[k];J[k]=x;sv();render(cur);}}
+    else if(a==='jr'){var o=J[i],m=(prompt('জামাতের নতুন নাম',o)||'').trim();if(m&&m!==o&&J.indexOf(m)<0){D.students.forEach(function(s){if(s.j===o)s.j=m;});J[i]=m;if(cj===o)cj=m;sv();render(cur);}}
+    else if(a==='jx'){var o2=J[i],c=D.students.filter(function(s){return s.j===o2;}).length;if(confirm('"'+o2+'" জামাত মুছবেন?'+(c?'\nএই জামাতের '+bn(c)+' জন ছাত্রও মুছে যাবে।':''))){D.students=D.students.filter(function(s){return s.j!==o2;});J.splice(i,1);if(cj===o2)cj=J[0]||'';sv();render(cur);}}}
+});
+$('main').addEventListener('input',function(ev){var t=ev.target;
+  if(t.id==='ef'){D.efd[ex]=bn(en(t.value).trim());sv();}
+  else if(t.hasAttribute('data-fe')){(D.ef[ex]=D.ef[ex]||{})[t.getAttribute('data-fe')]=t.value;sv();refFee();}
+  else if(t.id==='bf'){stu(cs).fee=bn(en(t.value).trim());sv();refBill();}
+  else if(t.hasAttribute('data-m')){setRec(cs,+t.getAttribute('data-m'),t.getAttribute('data-k'),t.value);sv();refBill();}});
+render('home');
+})();
+</script>
+<script>
+(function(){
+  var PW=1123,PH=794,KEY='rs_v2',DG='০১২৩৪৫৬৭৮৯';
+  function g(i){return document.getElementById(i);}
+  function bn(x){return String(x).replace(/\d/g,function(d){return DG[d];});}
+  function en(x){return String(x).replace(/[০-৯]/g,function(d){return DG.indexOf(d);}).replace(/[٠-٩]/g,function(d){return '٠١٢٣٤٥٦٧٨٩'.indexOf(d);});}
+  function esc(x){return String(x==null?'':x).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+  function num(x){var t=en(x).replace(/[^\d.]/g,'');if(t==='')return null;var v=parseFloat(t);return isNaN(v)?null:v;}
+  function fx(v){return bn((Math.round(v*100)/100).toFixed(2));}
+  var OR=['','১ম','২য়','৩য়','৪র্থ','৫ম','৬ষ্ঠ','৭ম','৮ম','৯ম','১০ম'];
+  function ord(n){return n<=10?OR[n]:bn(n)+'তম';}
+  function head(){return {inst:APPD.name,addr:APPD.addr,year:'১৪৪৭-৪৮ হিজরী, ২০২৬-২৭ঈ. শিক্ষাবর্ষের',exam:window.RS_EXAM||'১ম সাময়িক পরীক্ষার ফলাফল',cls:'সানাবিয়া',boxT:'বিভাগ বিন্যাস',boxN:'মোট বিষয়',lblC:'পরীক্ষার্থী',lblP:'পাশের হার',sign:'নায়েমে তালিমাতের স্বাক্ষর',hSl:'ক্রমিক নং',hDk:'দাখেলা নং',hNm:'পরীক্ষার্থীর নাম',hTot:'মোট',hAvg:'গড়',hDv:'বিভাগ',hRk:'স্থান',lblA:'অনুপস্থিত',full:100,pm:35,pc:[80,65,50,35],dn:['মুমতায','জা.জি.','জায়্যিদ','মাকবুল','রাসিব'],mg:10};}
+  function sample(){
+    var p=head();
+    p.subs=['',''];
+    p.studs=[];for(var i=0;i<2;i++)p.studs.push({n:'',d:'',m:['','']});
+    return p;
+  }
+  function blankFrom(p){var q=JSON.parse(JSON.stringify(p));q.studs=[];for(var i=0;i<2;i++)q.studs.push({n:'',d:'',m:q.subs.map(function(){return '';})});return q;}
+  var pages=[sample()],idx=0,zs=0.4,selC=-1,selR=-1;
+  function loadState(){pages=[sample()];idx=0;try{
+    var sv=JSON.parse(localStorage.getItem(KEY)||'null');
+    if(!sv){var o=null;
+      if(o&&o.pages&&o.pages.length&&!(o.pages.length===1&&o.pages[0].studs&&o.pages[0].studs[0]&&o.pages[0].studs[0].n==='মুহা. বাইজিদ আহমদ'))sv=o;}
+    if(sv&&sv.pages&&sv.pages.length){pages=sv.pages;idx=Math.min(sv.idx||0,pages.length-1);}
+    var untouched=pages.length===1&&pages[0].subs.every(function(x){return !String(x).trim();})&&pages[0].studs.every(function(t){return !String(t.n).trim()&&!String(t.d||'').trim()&&t.m.every(function(x){return !String(x).trim();});});
+    if(untouched){pages=[sample()];idx=0;}
+    pages.forEach(function(q){if(!q.fs)q.fs={};if(!q.hDk)q.hDk='দাখেলা নং';q.studs.forEach(function(t){if(t.d==null)t.d='';});});
+  }catch(e){}}
+  loadState();
+  function save(){try{localStorage.setItem(KEY,JSON.stringify({pages:pages,idx:idx}));}catch(e){if(!window.__rsw){window.__rsw=1;alert('ফোনের জায়গা ভরে গেছে, সেভ হচ্ছে না।');}}}
+  var ov=g('rs'),pg=g('rsPg'),wrap=g('rsWrap'),area=g('rsArea'),menu=g('rsMenu');
+  var FD={inst:30,info:14,cls:30,box:13.5,mid:16,th:13,tb:15,sum:15,sig:14};
+  function P(){return pages[idx];}
+  function applyFs(){var p=P();if(!p.fs)p.fs={};for(var k in FD){pg.style.setProperty('--f-'+k,(p.fs[k]||FD[k])+'px');}var el=g('rsFs');if(el)el.textContent=bn(p.fs.tb||FD.tb);}
+  function mgpx(){var m=P().mg;m=isNaN(m)?10:m;return Math.round(m*3.7795);}
+  function ed(f,cls,tag){return '<'+(tag||'span')+(cls?' class="'+cls+'"':'')+' contenteditable="true" data-f="'+f+'">'+esc(P()[f])+'</'+(tag||'span')+'>';}
+  function build(){
+    var p=P(),N=p.subs.length,h='';
+    h+='<div class="in" style="--rh:'+Math.max(21,Math.min(34,Math.floor(470/Math.max(1,p.studs.length))))+'px"><div class="r-top"><div></div><div class="r-c">'+ed('inst','r-inst','div')+ed('addr','r-addr','div')+ed('year','r-year','div')+ed('exam','r-exam','div')+'</div>';
+    h+='<div class="r-box">'+ed('boxT','','b')+'<div id="rsBox"></div></div></div>';
+    h+='<div class="r-mid"><div>'+ed('lblC')+' : <span id="rsCnt"></span> জন</div>'+ed('cls','r-cls','div')+'<div>'+ed('lblP')+' : <span id="rsPass"></span></div></div>';
+    h+='<table class="r-t"><colgroup><col style="width:46px"><col style="width:76px"><col style="width:190px">';
+    for(var j=0;j<N;j++)h+='<col>';
+    h+='<col style="width:58px"><col style="width:66px"><col style="width:70px"><col style="width:54px"></colgroup><thead><tr>';
+    h+='<th>'+ed('hSl')+'</th><th>'+ed('hDk')+'</th><th>'+ed('hNm')+'</th>';
+    for(j=0;j<N;j++)h+='<th data-s="'+j+'" contenteditable="true">'+esc(p.subs[j])+'</th>';
+    h+='<th>'+ed('hTot')+'</th><th>'+ed('hAvg')+'</th><th>'+ed('hDv')+'</th><th>'+ed('hRk')+'</th></tr></thead><tbody>';
+    p.studs.forEach(function(st,i){
+      h+='<tr data-i="'+i+'"><td class="sl" data-sl="'+i+'">'+bn(i+1)+'.</td><td class="dk" contenteditable="true" inputmode="numeric" data-d="'+i+'">'+esc(st.d)+'</td><td class="nm" contenteditable="true" data-n="'+i+'">'+esc(st.n)+'</td>';
+      for(var j=0;j<N;j++)h+='<td class="mk" contenteditable="true" inputmode="decimal" data-r="'+i+'" data-c="'+j+'">'+esc(st.m[j])+'</td>';
+      h+='<td class="tot"></td><td class="avg"></td><td class="dv"></td><td class="rk"></td></tr>';
+    });
+    h+='</tbody></table><div class="r-sum" id="rsSum"></div><div class="r-sig">'+ed('sign')+'</div></div>';
+    pg.innerHTML=h;
+    pg.style.padding=mgpx()+'px';
+    applyFs();
+    clearSelCls();
+  }
+  function recalc(){
+    var p=P(),N=p.subs.length,full=p.full||100,fullT=full*N,pm=p.pm;
+    var rows=[];
+    p.studs.forEach(function(st,i){
+      var vals=st.m.map(num),named=String(st.n).trim()!=='',any=vals.some(function(v){return v!==null;});
+      rows.push({i:i,vals:vals,named:named,any:any,abs:named&&!any,on:named||any});
+    });
+    var cnt=0,abs=0,pass=0,dc=[0,0,0,0,0];
+    rows.forEach(function(r){
+      if(!r.on)return;cnt++;
+      if(r.abs){abs++;r.div='অনুপস্থিত';return;}
+      r.tot=r.vals.reduce(function(a,v){return a+(v||0);},0);r.avg=N?r.tot/N:0;
+      var fail=r.vals.some(function(v){return (v||0)<p.pm;});
+      var d=4;
+      if(!fail){for(var k=0;k<4;k++){if(r.tot>=fullT*p.pc[k]/100-1e-9){d=k;break;}}}
+      r.d=d;r.div=p.dn[d];dc[d]++;if(d<4)pass++;
+    });
+    var live=rows.filter(function(r){return r.on&&!r.abs;}).sort(function(a,b){return b.tot-a.tot;});
+    var rk=0,last=null;live.forEach(function(r,k){if(r.tot!==last){rk=k+1;last=r.tot;}r.rk=rk;});
+    var trs=pg.querySelectorAll('tbody tr');
+    rows.forEach(function(r){
+      var tr=trs[r.i];if(!tr)return;
+      var set=function(c,t){tr.querySelector('td.'+c).textContent=t;};
+      tr.className=(r.on&&!r.abs&&r.d===4)?'rasib':'';
+      if(!r.on){set('tot','');set('avg','');set('dv','');set('rk','');}
+      else if(r.abs){set('tot','');set('avg','');set('dv',r.div);set('rk','');}
+      else{set('tot',bn(r.tot));set('avg',fx(r.avg));set('dv',r.div);set('rk',ord(r.rk));}
+      var mk=tr.querySelectorAll('td.mk');
+      for(var j=0;j<mk.length;j++){var v=r.vals[j];mk[j].classList.toggle('fail',r.on&&!r.abs&&(v||0)<p.pm);}
+    });
+    var bx='<div>'+esc(p.boxN)+': '+bn(N)+'টি: '+bn(full)+'×'+bn(N)+'='+bn(fullT)+'</div>';
+    for(var k=0;k<4;k++){var per=Math.round(full*p.pc[k])/100;bx+='<div>'+esc(p.dn[k])+': '+bn(per)+'×'+bn(N)+'='+bn(Math.round(fullT*p.pc[k])/100)+'</div>';}
+    g('rsBox').innerHTML=bx;
+    g('rsCnt').textContent=bn(cnt);
+    var den=cnt-abs;g('rsPass').textContent=den>0?fx(pass*100/den)+'%':fx(0)+'%';
+    function z(n){return (n<10?'০':'')+bn(n);}
+    g('rsSum').innerHTML=[0,1,2,3,4].map(function(k){return esc(p.dn[k])+': '+z(dc[k])+'জন';}).join(', ')+', '+esc(p.lblA)+': '+z(abs)+'জন।';
+  }
+  function fit(){
+    var in_=pg.firstChild;if(!in_)return;
+    var mg=mgpx(),avail=PH-2*mg,k=1;
+    in_.style.transform='none';in_.style.width='100%';
+    for(var t=0;t<4;t++){
+      in_.style.width=(100/k)+'%';in_.style.transform=k<1?'scale('+k+')':'none';in_.style.transformOrigin='0 0';
+      var h=in_.scrollHeight;var nk=Math.min(1,avail/h);
+      if(Math.abs(nk-k)<0.002)break;k=nk;
+    }
+  }
+  function setZ(z){zs=Math.max(0.2,Math.min(2.2,z));pg.style.transform='scale('+zs+')';wrap.style.width=Math.round(PW*zs)+'px';wrap.style.height=Math.round(PH*zs)+'px';}
+  function fitW(){setZ((area.clientWidth-20)/PW);}
+  function nav(){g('rsNum').textContent='পাতা '+bn(idx+1)+'/'+bn(pages.length);g('rsPrev').disabled=idx===0;g('rsNext').disabled=idx===pages.length-1;}
+  function draw(){build();recalc();fit();nav();save();}
+  function clearSelCls(){selC=-1;selR=-1;}
+  function mark(){
+    Array.prototype.forEach.call(pg.querySelectorAll('.sel'),function(e){e.classList.remove('sel');});
+    if(selC>=0){var th=pg.querySelector('th[data-s="'+selC+'"]');if(th)th.classList.add('sel');}
+    if(selR>=0){var td=pg.querySelector('td[data-sl="'+selR+'"]');if(td)td.classList.add('sel');}
+  }
+  var rt=null;
+  pg.addEventListener('input',function(e){
+    var t=e.target,p=P();
+    if(t.hasAttribute('data-f'))p[t.getAttribute('data-f')]=t.innerText.replace(/\n/g,' ').trim();
+    else if(t.hasAttribute('data-s'))p.subs[+t.getAttribute('data-s')]=t.innerText.replace(/\n/g,' ').trim();
+    else if(t.hasAttribute('data-n'))p.studs[+t.getAttribute('data-n')].n=t.innerText.replace(/\n/g,' ').trim();
+    else if(t.hasAttribute('data-d'))p.studs[+t.getAttribute('data-d')].d=t.innerText.replace(/\n/g,' ').trim();
+    else if(t.hasAttribute('data-r'))p.studs[+t.getAttribute('data-r')].m[+t.getAttribute('data-c')]=t.innerText.trim();
+    clearTimeout(rt);rt=setTimeout(function(){recalc();save();},120);
+  });
+  pg.addEventListener('focusout',function(e){
+    var t=e.target;
+    if(t.hasAttribute&&t.hasAttribute('data-r')){var v=num(t.innerText);var s=v===null?'':bn(Math.round(v*100)/100);t.textContent=s;P().studs[+t.getAttribute('data-r')].m[+t.getAttribute('data-c')]=s;recalc();save();}
+  });
+  pg.addEventListener('focusin',function(e){
+    var t=e.target;if(!t.isContentEditable)return;
+    if(zs<0.7){setZ(0.85);setTimeout(function(){try{t.scrollIntoView({block:'center',inline:'center'});}catch(x){}},60);}
+  });
+  pg.addEventListener('paste',function(e){e.preventDefault();var tx=(e.clipboardData||window.clipboardData).getData('text').replace(/\s+/g,' ');document.execCommand('insertText',false,tx);});
+  pg.addEventListener('keydown',function(e){
+    if(e.key!=='Enter')return;e.preventDefault();
+    var t=e.target;
+    if(t.hasAttribute('data-r')||t.hasAttribute('data-n')||t.hasAttribute('data-d')){
+      var i=+(t.getAttribute('data-r')||t.getAttribute('data-n')||t.getAttribute('data-d')),c=t.hasAttribute('data-r')?'td[data-r="'+(i+1)+'"][data-c="'+t.getAttribute('data-c')+'"]':(t.hasAttribute('data-d')?'td[data-d="'+(i+1)+'"]':'td[data-n="'+(i+1)+'"]');
+      var nx=pg.querySelector(c);if(nx){nx.focus();var r=document.createRange();r.selectNodeContents(nx);var s=getSelection();s.removeAllRanges();s.addRange(r);}else t.blur();
+    }else t.blur();
+  });
+  pg.addEventListener('click',function(e){
+    var t=e.target;
+    if(t.hasAttribute&&t.hasAttribute('data-s')){selC=(selC===+t.getAttribute('data-s'))?-1:+t.getAttribute('data-s');selR=-1;mark();}
+    else if(t.hasAttribute&&t.hasAttribute('data-sl')){selR=(selR===+t.getAttribute('data-sl'))?-1:+t.getAttribute('data-sl');selC=-1;mark();}
+  });
+  g('rsAddC').onclick=function(){var p=P();var n=prompt('কিতাবের নাম লিখুন','নতুন কিতাব');if(n===null)return;p.subs.push(n.trim()||'নতুন কিতাব');p.studs.forEach(function(s){s.m.push('');});draw();};
+  g('rsDelC').onclick=function(){var p=P();if(selC<0){alert('আগে কিতাবের নামের ঘরে একবার ট্যাপ করে সেটা বাছুন।');return;}if(p.subs.length<=1){alert('কমপক্ষে একটা কিতাব থাকতে হবে।');return;}if(!confirm('"'+p.subs[selC]+'" কিতাবটি সব নম্বরসহ মুছবেন?'))return;p.subs.splice(selC,1);p.studs.forEach(function(s){s.m.splice(selC,1);});draw();};
+  g('rsAddR').onclick=function(){var p=P();p.studs.push({n:'',d:'',m:p.subs.map(function(){return '';})});draw();setTimeout(function(){var x=pg.querySelector('td[data-n="'+(P().studs.length-1)+'"]');if(x)x.focus();},50);};
+  g('rsDelR').onclick=function(){var p=P();if(selR<0){alert('আগে ছাত্রের ক্রম নম্বরে একবার ট্যাপ করে সেটা বাছুন।');return;}if(p.studs.length<=1){alert('কমপক্ষে একটা সারি থাকতে হবে।');return;}if(!confirm((p.studs[selR].n||('ক্রম '+bn(selR+1)))+' এর সারিটি মুছবেন?'))return;p.studs.splice(selR,1);draw();};
+  g('rsAddP').onclick=function(){pages.splice(idx+1,0,blankFrom(P()));idx++;draw();};
+  g('rsDelP').onclick=function(){if(!confirm('এই পাতাটি পুরোপুরি মুছবেন?'))return;if(pages.length===1)pages=[blankFrom(P())];else{pages.splice(idx,1);idx=Math.min(idx,pages.length-1);}draw();};
+  var curEx=0;
+  function blankPg(q){return q.subs.every(function(x){return !String(x).trim();})&&q.studs.every(function(t){return !String(t.n).trim()&&!String(t.d||'').trim()&&t.m.every(function(x){return !String(x).trim();});});}
+  function syncRS(n){
+    var tpl=pages[0],out=[],old=pages.slice();
+    APPAPI.classes().forEach(function(c){
+      var pd=APPAPI.paid(n,c),lv=APPAPI.left(c),q=null;
+      for(var i=0;i<old.length;i++){if(old[i].cls===c){q=old[i];old.splice(i,1);break;}}
+      if(!q){if(!pd.length)return;q=blankFrom(tpl);q.cls=c;q.studs=[];}
+      var prev=q.studs,studs=[];
+      pd.forEach(function(s){var f=null;
+        for(var i=0;i<prev.length;i++){var t=prev[i];if(t.sid===s.id||(t.sid==null&&t.d===s.no&&t.n===s.name)){f=t;prev.splice(i,1);break;}}
+        if(!f)f={m:q.subs.map(function(){return '';})};
+        f.sid=s.id;f.n=s.name;f.d=s.no;studs.push(f);});
+      prev.forEach(function(t){if(t.sid==null&&(String(t.n).trim()||t.m.some(function(x){return String(x).trim();}))&&!lv.some(function(s){return t.d===s.no&&t.n===s.name;}))studs.push(t);});
+      q.studs=studs;
+      if(studs.length||!blankPg(q))out.push(q);
+    });
+    old.forEach(function(q){if(!blankPg(q))out.push(q);});
+    if(!out.length){var sp=sample();sp.cls='';out=[sp];}
+    pages=out;idx=Math.min(idx,pages.length-1);
+  }
+  window.__rsSync=function(){syncRS(curEx);draw();};
+  g('rsBack').onclick=function(){if(window.mmBack)window.mmBack();};
+  g('rsImp').onclick=function(){syncRS(curEx);draw();};
+  g('rsPrev').onclick=function(){if(idx>0){idx--;draw();}};g('rsNext').onclick=function(){if(idx<pages.length-1){idx++;draw();}};
+  function bump(d){var p=P();if(!p.fs)p.fs={};var t=Math.max(8,Math.min(30,(p.fs.tb||FD.tb)+d));p.fs.tb=t;p.fs.th=Math.max(7,Math.min(28,(p.fs.th||FD.th)+d));p.fs.mk=t;recalc();applyFs();fit();save();}
+  g('rsFm').onclick=function(){bump(-1);};g('rsFp').onclick=function(){bump(1);};
+  g('rsZi').onclick=function(){setZ(zs*1.25);};g('rsZo').onclick=function(){setZ(zs/1.25);};g('rsZf').onclick=fitW;
+  draw();setTimeout(fitW,30);window.addEventListener('load',function(){setTimeout(fitW,60);});
+  
+  window.addEventListener('resize',function(){fitW();});
+  var SM=g('rsSet');
+  g('rsGear').onclick=function(){var p=P();g('sFull').value=bn(p.full);g('sPm').value=bn(p.pm);for(var k=0;k<4;k++)g('sP'+k).value=bn(p.pc[k]);g('sMg').value=bn(p.mg);if(!p.fs)p.fs={};for(var q in FD)g('sF_'+q).value=bn(p.fs[q]||FD[q]);for(k=0;k<5;k++)g('sD'+k).value=p.dn[k];SM.classList.remove('hidden');};
+  g('sNo').onclick=function(){SM.classList.add('hidden');};
+  g('sOk').onclick=function(){var p=P();
+    var f=num(g('sFull').value),pm=num(g('sPm').value),mg=num(g('sMg').value);
+    if(!p.fs)p.fs={};for(var q in FD){var fv=num(g('sF_'+q).value);if(fv&&fv>=6&&fv<=80)p.fs[q]=fv;}
+    if(f&&f>0)p.full=f;if(pm!==null)p.pm=pm;if(mg!==null)p.mg=Math.max(0,Math.min(30,mg));
+    for(var k=0;k<4;k++){var v=num(g('sP'+k).value);if(v!==null)p.pc[k]=v;}
+    for(k=0;k<5;k++){var d=g('sD'+k).value.trim();if(d)p.dn[k]=d;}
+    SM.classList.add('hidden');draw();};
+  g('rsDl').onclick=function(){menu.style.display=menu.style.display==='block'?'none':'block';};
+  function load(src){return new Promise(function(res,rej){var s=document.createElement('script');s.src=src;s.onload=res;s.onerror=function(){rej(new Error('lib'));};document.head.appendChild(s);});}
+  async function libs(){
+    if(!window.html2canvas)await load('https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js');
+    if(!window.jspdf)await load('https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js');
+  }
+  function sv2(blob,name){var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(a.href);a.remove();},2500);}
+  function sleep(t){return new Promise(function(r){setTimeout(r,t);});}
+  async function dl(f){
+    menu.style.display='none';
+    var btn=g('rsDl'),old=btn.textContent;btn.textContent='⏳ তৈরি হচ্ছে…';
+    var cur=idx,z=zs,st=area.scrollTop,sl=area.scrollLeft;
+    try{
+      await libs();if(document.fonts&&document.fonts.ready)await document.fonts.ready;
+      var Q=parseInt(g('rsQ').value)||3,cvs=[];
+      area.scrollTop=0;area.scrollLeft=0;
+      pg.style.transform='none';pg.classList.add('cap');
+      document.activeElement&&document.activeElement.blur&&document.activeElement.blur();
+      for(var i=0;i<pages.length;i++){
+        idx=i;build();recalc();fit();await sleep(150);
+        var c;try{c=await html2canvas(pg,{scale:Q,backgroundColor:'#ffffff',useCORS:true,width:PW,height:PH,windowWidth:PW,windowHeight:PH,scrollX:0,scrollY:0});}
+        catch(e){c=await html2canvas(pg,{scale:2,backgroundColor:'#ffffff',width:PW,height:PH,windowWidth:PW,windowHeight:PH,scrollX:0,scrollY:0});}
+        cvs.push(c);
+      }
+      var nm=(pages[0].cls||'result').replace(/[\\\/:*?"<>|]/g,'_')+'-result';
+      if(f==='pdf'){
+        var J=window.jspdf.jsPDF,d=new J({unit:'mm',format:'a4',orientation:'landscape',compress:true});
+        cvs.forEach(function(c,k){if(k)d.addPage('a4','landscape');d.addImage(c.toDataURL('image/jpeg',0.97),'JPEG',0,0,297,210,undefined,'FAST');});
+        sv2(d.output('blob'),nm+'.pdf');
+      }else{
+        var mime=f==='jpg'?'image/jpeg':'image/png';
+        cvs.forEach(function(c,k){setTimeout(function(){c.toBlob(function(b){sv2(b,nm+(cvs.length>1?'-'+(k+1):'')+'.'+f);},mime,0.97);},k*700);});
+      }
+    }catch(e){alert('ডাউনলোড হয়নি। নেট চালু আছে কিনা দেখে আবার চেষ্টা করুন।');}
+    pg.classList.remove('cap');idx=cur;draw();setZ(z);area.scrollTop=st;area.scrollLeft=sl;btn.textContent=old;
+  }
+  Array.prototype.forEach.call(menu.querySelectorAll('button'),function(b){b.onclick=function(){dl(b.getAttribute('data-f'));};});
+  window.__rs={draw:draw,pages:function(){return pages;},open:function(k,t,n){KEY=k;window.RS_EXAM=t;curEx=n||0;loadState();idx=0;syncRS(curEx);draw();setTimeout(fitW,30);}};
+})();
+</script>
+<script>if('serviceWorker' in navigator&&location.protocol.indexOf('http')===0){navigator.serviceWorker.register('sw.js').catch(function(){});}</script>
+</body>
+</html>
